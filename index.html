@@ -257,6 +257,21 @@ function stopTimer(){ clearTimeout(timer); clearTimeout(urgentTimer);
    ============================================================ */
 const STORY = {
 
+  /* ---------------- PRE-TITLE (cold open · faceless · plants Teo without naming him) ---------------- */
+  pt01a:{ img:'pt01_wreck.png', slug:'EXT. WET HIGHWAY · SIX MONTHS AGO',
+    line:'', action:'Rain. A wrecked car on the shoulder. Blue and red light in the wet asphalt. No sirens yet.',
+    next:'pt01b' },
+  pt01b:{ img:'pt01_teo.png', slug:'EXT. WET HIGHWAY · SIX MONTHS AGO',
+    line:'', action:'A man in a dark coat stands at the edge of it, facing away. He is the only one here. He takes out his phone, dials, listens, nods once — and puts it away before anyone else arrives.',
+    next:'pt01c' },
+  pt01c:{ img:'pt01_black.png',
+    line:'Six months later.', action:'',
+    next:'pt02' },
+
+  pt02:{ img:'maya_phone_placeholder.png', slug:'HER APARTMENT · SIX MONTHS',
+    line:'', action:'A phone. Notification history. DANIEL — missed call. Fourteen times over six months. NADIA KOROLOVA — missed call, once. All unanswered. A hand turns it face-down and walks away.',
+    next:'open1' },
+
   /* ---------------- OPENING (wound before hook · ~25s muted) ---------------- */
   // op1 — MEET HER (face first, competence)
   open1:{ img:'00_hero.png', slug:'INT. JFK T4 · GATE B22 · 11:47 PM',
@@ -270,8 +285,8 @@ const STORY = {
 
   // op3 — THE WOUND (the 14 — planted here, detonates in the ending)
   open3:{ img:'maya_phone_placeholder.png', slug:'HER PHONE · SIX MONTHS OF IT',
-    line:'The one conversation she keeps avoiding is the one on her own phone.',
-    action:'DANIEL — 14 missed calls. She has answered none of them. She turns it face-down. Again.',
+    line:'The phone in her coat holds the same fourteen we just watched her ignore.',
+    action:'She has learned to feel its weight without looking at it. She turns it face-down. Again.',
     next:'open4' },
 
   // op4 — THE CRACK (the eyes carry what the face won't)
@@ -438,11 +453,19 @@ function go(key){
   tap.style.display='none';
   renderMayas(false);
 
+  // wordless/short beats (the pre-title atmosphere shots) still need a floor —
+  // otherwise an empty line+action arms "continue" instantly and the frame never registers
+  const shownAt = Date.now();
+  const MIN_DWELL = 1400;
+  function afterDwell(fn){
+    setTimeout(fn, Math.max(0, MIN_DWELL - (Date.now() - shownAt)));
+  }
+
   // type the line, then action, then reveal interaction
   typeLine(document.getElementById('line'), node.line||'', 26, ()=>{
     typeLine(document.getElementById('action'), node.action||'', 12, ()=>{
       if(node.choices){ renderChoices(node); }
-      else { armTap(node.next); }
+      else { afterDwell(()=>armTap(node.next)); }
     });
   });
 }
@@ -525,7 +548,7 @@ function startGame(){
   pathCodes=[];
   document.getElementById('title').classList.add('hide');
   renderMayas(true);
-  setTimeout(()=>go('open1'), 700);
+  setTimeout(()=>go('pt01a'), 700);
 }
 function replay(){
   document.getElementById('ending').classList.add('hide');
