@@ -193,6 +193,9 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
    ============================================================ */
 
 const F = 'frames/';
+/* TESTING PHASE: timers off — isolating story pull / stickiness from the time-pressure mechanic.
+   Flip to true to restore the countdown + "the world decides" 5th-outcome behavior. */
+const TIMERS_ENABLED = false;
 const stage = document.getElementById('stage');
 let layerTop = document.getElementById('fA');
 let layerBot = document.getElementById('fB');
@@ -466,7 +469,7 @@ function renderChoices(n){
     box.appendChild(b);
     setTimeout(()=>b.classList.add('in'), 120*idx+80);
   });
-  if(n.timer){ runTimer(n.timer, ()=>{
+  if(n.timer && TIMERS_ENABLED){ runTimer(n.timer, ()=>{
       // timer runs out = the 5th outcome: the world decides for her — make it legible.
       // highlight whichever choice actually matches timeoutTo (falls back to 0 only if none match)
       box.style.pointerEvents='none';
@@ -544,6 +547,7 @@ function refreshReturnNote(){
       : `Return ${p} · ${s.length}/5 Mayas · she is different this time`;
   }
 }
+if(!TIMERS_ENABLED){ const tb=document.querySelector('.timerbar'); if(tb) tb.style.display='none'; }
 refreshReturnNote(); renderMayas(true);
 </script>
 </body>
