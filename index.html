@@ -56,9 +56,12 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   text-shadow:0 1px 4px rgba(0,0,0,0.7),0 1px 10px rgba(0,0,0,0.4)}
 .hud .slug{max-width:60%}
 .hud .meta{text-align:right;line-height:1.6}
-.timerbar{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.06);z-index:7}
+.timerbar{position:absolute;top:0;left:0;right:0;height:4px;background:rgba(255,255,255,0.14);z-index:7}
 .timerfill{height:100%;width:100%;background:linear-gradient(90deg,var(--accent),var(--warn));
   transform-origin:left;transition:transform 0.1s linear}
+/* last third of the countdown: an unmissable pulsing glow, since the eye is on the choices, not the top edge */
+.timerbar.urgent{animation:timerurgent 0.6s ease-in-out infinite}
+@keyframes timerurgent{0%,100%{box-shadow:0 0 0 rgba(224,86,79,0)}50%{box-shadow:0 8px 18px -3px rgba(224,86,79,0.75)}}
 
 /* ---- text plate ---- */
 .plate{position:absolute;left:0;right:0;bottom:0;z-index:6;
@@ -228,16 +231,21 @@ function typeLine(el, txt, speed, done){
 }
 
 /* ---------- timer (choice pressure) ---------- */
-let timer=null;
+let timer=null, urgentTimer=null;
 function runTimer(sec, onExpire){
   const fill=document.getElementById('timerfill');
+  const bar=document.querySelector('.timerbar');
   fill.style.transition='none'; fill.style.transform='scaleX(1)';
   void fill.offsetWidth;
   fill.style.transition=`transform ${sec}s linear`; fill.style.transform='scaleX(0)';
-  clearTimeout(timer); timer=setTimeout(onExpire, sec*1000);
+  bar.classList.remove('urgent');
+  clearTimeout(timer); clearTimeout(urgentTimer);
+  timer=setTimeout(onExpire, sec*1000);
+  urgentTimer=setTimeout(()=>bar.classList.add('urgent'), sec*1000*0.65);
 }
-function stopTimer(){ clearTimeout(timer);
+function stopTimer(){ clearTimeout(timer); clearTimeout(urgentTimer);
   const fill=document.getElementById('timerfill'); fill.style.transition='none';
+  const bar=document.querySelector('.timerbar'); if(bar) bar.classList.remove('urgent');
 }
 
 /* ============================================================
