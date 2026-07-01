@@ -63,6 +63,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
 /* ---- text plate ---- */
 .plate{position:absolute;left:0;right:0;bottom:0;z-index:6;
   padding:26px 22px 26px;
+  display:flex;flex-direction:column;
   background:linear-gradient(0deg,rgba(3,5,11,0.96) 0%,rgba(3,5,11,0.82) 55%,transparent 100%)}
 .chapter{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
   color:var(--maya-cold);margin-bottom:12px;opacity:0.95}
@@ -89,8 +90,8 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
 .choice.chosen{border-color:var(--warn);background:rgba(224,86,79,0.16);
   box-shadow:0 0 22px rgba(224,86,79,0.25);transition:.4s}
 
-/* ---- tap-to-advance hint — a real button, not ambient text ---- */
-.tap{position:absolute;right:18px;bottom:20px;z-index:6;font-size:11px;letter-spacing:0.1em;
+/* ---- tap-to-advance hint — a real button, in-flow so it always sits below the text ---- */
+.tap{align-self:flex-end;margin-top:6px;font-size:11px;letter-spacing:0.1em;
   text-transform:uppercase;color:rgba(232,241,251,0.92);
   background:rgba(20,32,54,0.55);backdrop-filter:blur(6px);
   border:0.5px solid rgba(140,175,225,0.45);border-radius:20px;padding:9px 16px;
@@ -160,8 +161,8 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
     <div class="line" id="line"></div>
     <div class="action" id="action"></div>
     <div class="choices" id="choices"></div>
+    <div class="tap" id="tap" style="display:none">continue ›</div>
   </div>
-  <div class="tap" id="tap" style="display:none">continue ›</div>
 
   <!-- TITLE -->
   <div class="curtain" id="title">
@@ -421,7 +422,7 @@ function go(key){
   if(node.end){ return showEnding(node); }
 
   show(node.img); setHUD(node);
-  plate.style.display='block';
+  plate.style.display='flex';
   document.getElementById('choices').innerHTML='';
   tap.style.display='none';
   renderMayas(false);
