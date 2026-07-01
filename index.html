@@ -45,11 +45,15 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   background:radial-gradient(120% 80% at 50% 35%,transparent 40%,rgba(2,4,10,0.55) 100%)}
 .grade{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;
   background:linear-gradient(180deg,rgba(60,110,180,0.20),rgba(10,20,40,0.10))}
+/* guarantees HUD text stays legible no matter how bright the frame underneath is */
+.hud-scrim{position:absolute;top:0;left:0;right:0;height:120px;z-index:5;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,4,10,0.6) 0%,rgba(2,4,10,0) 100%)}
 
 /* ---- top HUD ---- */
 .hud{position:absolute;top:0;left:0;right:0;padding:16px 18px;z-index:6;
   display:flex;justify-content:space-between;align-items:flex-start;
-  font-size:10px;letter-spacing:0.14em;color:rgba(220,235,255,0.55);text-transform:uppercase}
+  font-size:10px;letter-spacing:0.14em;color:rgba(228,238,251,0.88);text-transform:uppercase;
+  text-shadow:0 1px 4px rgba(0,0,0,0.7),0 1px 10px rgba(0,0,0,0.4)}
 .hud .slug{max-width:60%}
 .hud .meta{text-align:right;line-height:1.6}
 .timerbar{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.06);z-index:7}
@@ -61,10 +65,10 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   padding:26px 22px 26px;
   background:linear-gradient(0deg,rgba(3,5,11,0.96) 0%,rgba(3,5,11,0.82) 55%,transparent 100%)}
 .chapter{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--maya-cold);margin-bottom:12px;opacity:0.85}
+  color:var(--maya-cold);margin-bottom:12px;opacity:0.95}
 .line{font-family:var(--serif);font-size:19px;line-height:1.6;color:var(--maya-ice);
   font-style:italic;margin-bottom:10px;min-height:1.6em}
-.action{font-size:12.5px;line-height:1.65;color:rgba(205,222,245,0.72);margin-bottom:18px;
+.action{font-size:12.5px;line-height:1.65;color:rgba(210,226,248,0.9);margin-bottom:18px;
   font-family:var(--mono)}
 .cursor{display:inline-block;width:7px;height:1.05em;vertical-align:-2px;
   background:var(--maya-ice);margin-left:2px;animation:blink 1s steps(1) infinite;opacity:0.8}
@@ -140,6 +144,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="frame" id="fB"></div>
   <div class="vignette"></div>
   <div class="grade"></div>
+  <div class="hud-scrim"></div>
   <div class="fade-black" id="fadeblk"></div>
 
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
