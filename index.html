@@ -85,10 +85,13 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
 .choice.chosen{border-color:var(--warn);background:rgba(224,86,79,0.16);
   box-shadow:0 0 22px rgba(224,86,79,0.25);transition:.4s}
 
-/* ---- tap-to-advance hint ---- */
-.tap{position:absolute;right:18px;bottom:20px;z-index:6;font-size:10px;letter-spacing:0.14em;
-  text-transform:uppercase;color:rgba(220,235,255,0.4);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{50%{opacity:0.35}}
+/* ---- tap-to-advance hint — a real button, not ambient text ---- */
+.tap{position:absolute;right:18px;bottom:20px;z-index:6;font-size:11px;letter-spacing:0.1em;
+  text-transform:uppercase;color:rgba(232,241,251,0.92);
+  background:rgba(20,32,54,0.55);backdrop-filter:blur(6px);
+  border:0.5px solid rgba(140,175,225,0.45);border-radius:20px;padding:9px 16px;
+  animation:tappulse 1.8s ease-in-out infinite}
+@keyframes tappulse{0%,100%{opacity:0.82}50%{opacity:1}}
 
 /* ---- title / ending overlays ---- */
 .curtain{position:absolute;inset:0;z-index:10;background:#04060c;
@@ -153,7 +156,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
     <div class="action" id="action"></div>
     <div class="choices" id="choices"></div>
   </div>
-  <div class="tap" id="tap" style="display:none">tap to continue ›</div>
+  <div class="tap" id="tap" style="display:none">continue ›</div>
 
   <!-- TITLE -->
   <div class="curtain" id="title">
