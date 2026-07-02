@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 005</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 006</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -261,31 +261,37 @@ function stopTimer(){ clearTimeout(timer); clearTimeout(urgentTimer);
    ============================================================ */
 const STORY = {
 
-  /* ---------------- PRE-TITLE (cold open · faceless · plants Teo without naming him) ---------------- */
-  pt01a:{ img:'pt01_wreck.png', slug:'EXT. WET HIGHWAY · SIX MONTHS AGO',
-    line:'', action:'Rain. A wrecked car on the shoulder. Blue and red light in the wet asphalt. No sirens yet.',
-    next:'pt01b' },
-  pt01b:{ img:'pt01_teo.png', slug:'EXT. WET HIGHWAY · SIX MONTHS AGO',
-    line:'', action:'A man in a dark coat stands at the edge of it, facing away. He is the only one here. He takes out his phone, dials, listens, nods once — and puts it away before anyone else arrives.',
-    next:'pt01c' },
-  pt01c:{ img:'pt01_teo.png', dim:true,
-    line:'Six months later.', action:'',
-    next:'pt02' },
-
-  pt02:{ img:'maya_phone_placeholder.png', slug:'HER APARTMENT · SIX MONTHS',
-    line:'', action:'A phone. Notification history. DANIEL — missed call. Fourteen times over six months. NADIA KOROLOVA — missed call, once. All unanswered. A hand turns it face-down and walks away.',
+  /* ---------------- THE NEGOTIATION (new cold open · only Maya · raises stakes, establishes her) ---------------- */
+  neg1:{ img:'neg1_rooftop.png', slug:'EXT. ROOFTOP · TWENTY STORIES UP',
+    line:'', action:'A rooftop. Twenty stories up. Wind. Somewhere below, sirens that haven’t stopped in an hour.',
+    next:'neg2' },
+  neg2:{ img:'neg2_listening.png', slug:'EXT. ROOFTOP · FIFTY MINUTES IN',
+    line:'She has been on the phone for fifty minutes. She has not raised her voice once.',
+    action:'', next:'neg3' },
+  neg3:{ img:'neg2_listening.png', slug:'EXT. ROOFTOP · FIFTY MINUTES IN',
+    line:'“I’m not going to lie to you. I don’t know if it gets better. I know you’re still here, and that’s the only fact I need right now.”',
+    action:'A voice on the other end, young, crying. She does not flinch.',
+    next:'neg4' },
+  neg4:{ img:'neg4_after.png', slug:'EXT. ROOFTOP · AFTER',
+    line:'It ends. She does not celebrate. She has learned not to.',
+    action:'Somewhere below, they walk a kid off the ledge. She will never know the name. She never asks. Asking is how you make it personal, and personal is how you lose.',
     next:'open1' },
 
   /* ---------------- OPENING (wound before hook · ~25s muted) ---------------- */
-  // op1 — MEET HER (face first, competence)
+  // op1 — TRANSITION (from professional competence to personal blank page)
   open1:{ img:'00_hero.png', slug:'INT. JFK T4 · GATE B22 · 11:47 PM',
-    line:'Maya Reyes talks strangers off ledges for a living. Nineteen years. NYPD crisis negotiator.',
+    line:'Nineteen years of choosing exactly what to say. Tonight she has nothing prepared.',
     action:'', next:'open2' },
 
   // op2 — ISOLATION (the world swallows her)
   open2:{ img:'maya_wide.png', slug:'INT. JFK T4 · THE LAST FLIGHT',
     line:'Tonight she is the only person at the gate not in a hurry to leave.',
-    action:'', next:'open3' },
+    action:'', next:'pt02' },
+
+  // the 14 — planted here, right before its own callback, detonates in the ending
+  pt02:{ img:'maya_phone_placeholder.png', slug:'HER PHONE · SIX MONTHS OF IT',
+    line:'', action:'A phone. Notification history. DANIEL — missed call. Fourteen times over six months. NADIA KOROLOVA — missed call, once. All unanswered. A hand turns it face-down and walks away.',
+    next:'open3' },
 
   // op3 — THE WOUND (the 14 — planted here, detonates in the ending)
   open3:{ img:'maya_phone_placeholder.png', slug:'HER PHONE · SIX MONTHS OF IT',
@@ -562,7 +568,7 @@ function startGame(){
   pathCodes=[];
   document.getElementById('title').classList.add('hide');
   renderMayas(true);
-  setTimeout(()=>go('pt01a'), 700);
+  setTimeout(()=>go('neg1'), 700);
 }
 function replay(){
   document.getElementById('ending').classList.add('hide');
