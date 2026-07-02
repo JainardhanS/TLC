@@ -154,7 +154,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 003</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 004</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -442,7 +442,9 @@ const plate=document.getElementById('plate');
 const tap=document.getElementById('tap');
 
 function setHUD(n){
-  if(n.slug) document.getElementById('slug').textContent=n.slug;
+  // always set (or clear) the slug explicitly — a lingering label from the previous
+  // beat reads as a bug on beats that intentionally carry no location text (e.g. the cut-to-black card)
+  document.getElementById('slug').textContent = n.slug || '';
   if(n.chapter) document.getElementById('chapter').textContent=n.chapter;
   document.getElementById('chapter').style.display = n.chapter? 'block':'none';
 }
