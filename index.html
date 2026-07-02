@@ -322,8 +322,9 @@ const STORY = {
     line:'A coffin with a window seat. She has the incomplete sentence memorised before the screen goes dark.',
     action:'Three messages at altitude. “The London job isn’t what you think.” “Nadia set it up. Check her accounts.” “Maya I’m sor—” Connection lost.', next:'board_4'},
   board_4:{ img:'board_messages.png', slug:'INT. CABIN · 30,000 FEET',
-    line:'A name. Nadia Korolova. No wifi. A contact in London she cannot meet. She works with what she has.',
-    action:'', next:'c2_board'},
+    line:'A name is not evidence. A name is a start.',
+    action:'Nadia Korolova. No wifi to check anything else — a contact waiting in London she cannot reach. She works with what she has.',
+    next:'c2_board'},
 
   c2_board:{ img:'board_face.png', slug:'INT. CABIN · CRUISING', chapter:'Choice — what does she trust?',
     line:'Two hours until landing. Three sentences and one missing word.',
@@ -333,10 +334,16 @@ const STORY = {
       {ct:'Build the case', cx:'Write it down.', to:'cloud_1', maya:'control'},
     ]},
 
-  /* shared CLOUD reveal (Access/Search land on the same material) */
-  cloud_1:{ img:'cloud_records.png', slug:'CLOUD DRIVE · NADIA KOROLOVA — ACCOUNTS', chapter:'The evidence',
-    line:'Wire transfers. Shell companies. Two years of money moving through her dead husband’s hands.',
-    action:'A folder she was never meant to open. A London transfer dated three weeks from tonight.', next:'cloud_2'},
+  /* shared CLOUD reveal (Access/Search land on the same material) — split into discovery (feeling) then facts,
+     since this is the one node every branch converges through and was the densest beat in the whole build */
+  cloud_1:{ img:'cloud_records.png', slug:'CLOUD DRIVE · A FOLDER SHE WAS NEVER MEANT TO OPEN', chapter:'The evidence',
+    line:'His password was her birthday. She has always found that embarrassing.',
+    action:'Her thumb hovers a half-second longer than it should. Twenty years of not needing permission to look at anything. This is different.',
+    next:'cloud_1b'},
+  cloud_1b:{ img:'cloud_records.png', slug:'CLOUD DRIVE · NADIA KOROLOVA — ACCOUNTS',
+    line:'Nadia Korolova. Daniel’s partner, warm and precise — the kind of person you trust until you count how many times her name shows up in what’s not yours to read.',
+    action:'Wire transfers. Shell companies. Two years of money moving through her dead husband’s hands. A London transfer, dated three weeks from tonight.',
+    next:'cloud_2'},
   cloud_2:{ img:'cloud_letter.png', slug:'CLOUD DRIVE · A DOCUMENT TITLED “M”',
     line:'His handwriting. Dated two weeks before the accident.',
     action:'“If something happens to me before I can tell you in person—” It stops. He ran out of time. He never finished it.', next:'cloud_3'},
