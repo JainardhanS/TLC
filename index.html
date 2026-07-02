@@ -140,6 +140,9 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
 
 .fade-black{position:absolute;inset:0;background:#04060c;z-index:9;opacity:0;pointer-events:none;transition:opacity .5s}
 .fade-black.on{opacity:1}
+/* darkens the CURRENT frame instead of cutting to a blank one — reads as a fade, not a broken load */
+.blackout{position:absolute;inset:0;z-index:5;background:#04060c;opacity:0;pointer-events:none;transition:opacity 1.6s ease}
+.blackout.on{opacity:0.9}
 </style>
 </head>
 <body>
@@ -149,12 +152,13 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="vignette"></div>
   <div class="grade"></div>
   <div class="hud-scrim"></div>
+  <div class="blackout" id="blackout"></div>
   <div class="fade-black" id="fadeblk"></div>
 
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 004</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 005</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -264,7 +268,7 @@ const STORY = {
   pt01b:{ img:'pt01_teo.png', slug:'EXT. WET HIGHWAY · SIX MONTHS AGO',
     line:'', action:'A man in a dark coat stands at the edge of it, facing away. He is the only one here. He takes out his phone, dials, listens, nods once — and puts it away before anyone else arrives.',
     next:'pt01c' },
-  pt01c:{ img:'pt01_black.png',
+  pt01c:{ img:'pt01_teo.png', dim:true,
     line:'Six months later.', action:'',
     next:'pt02' },
 
@@ -461,6 +465,7 @@ function go(key){
   document.getElementById('choices').innerHTML='';
   tap.style.display='none';
   renderMayas(false);
+  document.getElementById('blackout').classList.toggle('on', !!node.dim);
 
   // wordless/short beats (the pre-title atmosphere shots) still need a floor —
   // otherwise an empty line+action arms "continue" instantly and the frame never registers
