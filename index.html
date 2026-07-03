@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 008</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 009</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -331,111 +331,111 @@ const STORY = {
 
   /* ================= BRANCH A — BOARD (Control) ================= */
   board_1:{ img:'board_jetbridge.png', slug:'INT. JET BRIDGE · 11:51 PM', chapter:'Board · the crossing',
-    line:'She has walked into worse rooms than this. She tells herself this twice. The second time is less convincing.',
-    action:'She does not look back. The door closes with a sound exactly as final as it is.', next:'board_2'},
+    line:'She has walked into rooms with guns in them. This is a jet bridge. She tells herself that twice. The second time doesn’t take.',
+    action:'She doesn’t look back. Behind her the door thunks shut — soft, absolute, exactly as final as it sounds.', next:'board_2'},
   board_2:{ img:'board_door.png', slug:'INT. CABIN DOOR · THRESHOLD',
-    line:'Twenty years of negotiation. She never needs to write anything down.',
-    action:'Hand on the cabin frame. One breath. She steps into the smaller version of the world she just chose.', next:'board_3'},
+    line:'Twenty years of talking people out of rooms. She has never once needed to write anything down.',
+    action:'Palm flat on the cabin frame. One counted breath. Then she steps into the smaller world she just chose.', next:'board_3'},
   board_3:{ img:'board_seated.png', slug:'INT. CABIN · DL516 · TAXIING',
-    line:'A coffin with a window seat. She has the incomplete sentence memorised before the screen goes dark.',
-    action:'Three messages at altitude. “The London job isn’t what you think.” “Nadia set it up. Check her accounts.” “Maya I’m sor—” Connection lost.', next:'board_4'},
+    line:'A coffin with a window seat. The unfinished sentence memorises itself before the screen goes dark.',
+    action:'Three messages as the ground falls away. “The London job isn’t what you think.” “Nadia set it up. Check her accounts.” “Maya I’m sor—” The signal dies mid-word.', next:'board_4'},
   board_4:{ img:'board_messages.png', slug:'INT. CABIN · 30,000 FEET',
-    line:'A name is not evidence. A name is a start.',
-    action:'Nadia Korolova. No wifi to check anything else — a contact waiting in London she cannot reach. She works with what she has.',
+    line:'A name is not evidence. A name is a door with a handle.',
+    action:'Nadia Korolova. No wifi. A contact waiting in London she can’t warn or question. She works with the only thing on board: what she remembers.',
     next:'c2_board'},
 
   c2_board:{ img:'board_face.png', slug:'INT. CABIN · CRUISING', chapter:'Choice — what does she trust?',
-    line:'Two hours until landing. Three sentences and one missing word.',
+    line:'Two hours to landing. Three sentences, one missing word, and nowhere to put any of it.',
     timer:16, timeoutTo:'cloud_1',
     choices:[
-      {ct:'Access the cloud', cx:'His old password.', to:'cloud_1', maya:'truth'},
-      {ct:'Build the case', cx:'Write it down.', to:'cloud_1', maya:'control'},
+      {ct:'Access the cloud', cx:'The password she shouldn’t still know.', to:'cloud_1', maya:'truth'},
+      {ct:'Build the case', cx:'Pen. Napkin. Facts.', to:'cloud_1', maya:'control'},
     ]},
 
   /* shared CLOUD reveal (Access/Search land on the same material) — split into discovery (feeling) then facts,
      since this is the one node every branch converges through and was the densest beat in the whole build */
   cloud_1:{ img:'cloud_records.png', slug:'CLOUD DRIVE · A FOLDER SHE WAS NEVER MEANT TO OPEN', chapter:'The evidence',
-    line:'His password was her birthday. She has always found that embarrassing.',
-    action:'Her thumb hovers a half-second longer than it should. Twenty years of not needing permission to look at anything. This is different.',
+    line:'His password was her birthday. She used to tease him about it. It opens on the first try.',
+    action:'Her thumb hangs over the glass a half-second too long. Twenty years of never needing permission to look at anything. This is her asking for it.',
     next:'cloud_1b'},
   cloud_1b:{ img:'cloud_records.png', slug:'CLOUD DRIVE · NADIA KOROLOVA — ACCOUNTS',
-    line:'Nadia Korolova. Daniel’s partner, warm and precise — the kind of person you trust until you count how many times her name shows up in what’s not yours to read.',
-    action:'Wire transfers. Shell companies. Two years of money moving through her dead husband’s hands. A London transfer, dated three weeks from tonight.',
+    line:'Nadia Korolova. Daniel’s partner — warm, exact, the one who held her at the funeral and meant it. Her name is in everything Maya was never meant to read.',
+    action:'Wire transfers. Shell companies with borrowed names. Two years of money moving through her dead husband’s hands — and one London transfer dated three weeks from tonight.',
     next:'cloud_2'},
   cloud_2:{ img:'cloud_letter.png', slug:'CLOUD DRIVE · A DOCUMENT TITLED “M”',
-    line:'His handwriting. Dated two weeks before the accident.',
-    action:'“If something happens to me before I can tell you in person—” It stops. He ran out of time. He never finished it.', next:'cloud_3'},
+    line:'His handwriting — photographed, saved where only she would look. Dated two weeks before the accident.',
+    action:'“If something happens to me before I can tell you in person—” The line just ends. No period. He stopped mid-sentence and never came back to it.', next:'cloud_3'},
   cloud_3:{ img:'cloud_maya.png', slug:'THE NEGOTIATOR KNOWS THREE OPTIONS',
-    line:'She has used all three in different rooms with different people. She has never used one on herself.',
+    line:'She has walked strangers through all three, in rooms with cameras and men with guns. She has never once turned one on herself.',
     action:'', next:'c3'},
 
   /* ================= BRANCH B — STAY (Doubt) ================= */
   stay_1:{ img:'stay_gate.png', slug:'INT. GATE B22 · 11:52 PM', chapter:'Stay · the gate empties',
-    line:'Ninety-one seconds since she stepped out of line. She counts. Counting is the last thing to leave her.',
-    action:'The gate drains like water. The last passengers flow past. She alone stands still.', next:'stay_2'},
+    line:'Ninety-one seconds since she stepped out of line. Ninety-two. She’s still counting. Counting is the last thing that leaves her.',
+    action:'The gate empties like a tide going out — roller bags, sneakers, a last boarding pass held high. Maya is the only fixed point.', next:'stay_2'},
   stay_2:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · NADIA CALLING',
-    line:'She knew Maya was on DL516. She knows Maya didn’t board. That is not what a friend does. That is what a handler does.',
-    action:'NADIA KOROLOVA — warm contact photo against the cold screen. She ends the call before Nadia finishes her sentence. Four minutes before someone comes looking.', next:'c2_stay'},
+    line:'Nadia knew the flight number. Nadia knows, already, that she isn’t on it. Friends ask where you are. Handlers don’t have to.',
+    action:'NADIA KOROLOVA — the contact photo smiles, summer-warm against the cold glass. Maya thumbs the call dead mid-sentence. Four minutes, she figures, before someone comes looking.', next:'c2_stay'},
 
   c2_stay:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · 11:58 PM', chapter:'Choice — who does she trust with this?',
-    line:'Two names. Twelve years and a badge, or a dead man’s password.',
+    line:'Two names left in her hand. Twelve years and a badge — or eight characters a dead man never changed.',
     timer:16, timeoutTo:'stay_teo_1',
     choices:[
-      {ct:'Call Teo', cx:'He was there.', to:'stay_teo_1', maya:'connection'},
-      {ct:'Search the cloud', cx:'His old password.', to:'cloud_1', maya:'truth'},
+      {ct:'Call Teo', cx:'He was there that night.', to:'stay_teo_1', maya:'connection'},
+      {ct:'Search the cloud', cx:'The password she never forgot.', to:'cloud_1', maya:'truth'},
     ]},
 
   /* Stay → Call Teo sub-branch (real content: the confrontation + the crash-scene reveal) */
   stay_teo_1:{ img:'teo_incoming.png', slug:'INT. GATE B22 · CALLING TEO',
-    line:'He picks up on the first ring. 12:02 AM. As if he was expecting it.',
+    line:'First ring. 12:02 AM. Teo answers like a man who has spent six months sitting next to the phone.',
     action:'', next:'stay_teo_2'},
   stay_teo_2:{ img:'teo_confront.png', slug:'PHONE · TEO VARGAS',
-    line:'“He came to me, Maya. Three weeks before the flight.”',
-    action:'Route 9W northbound. The overpass. A detail that was never in any report she read.', next:'stay_teo_3'},
+    line:'“He came to me, Maya. Three weeks before the flight. Couldn’t keep his hands still.”',
+    action:'Route 9W northbound. The overpass. He names it without hesitating — a detail that was never in any report she read.', next:'stay_teo_3'},
   stay_teo_3:{ img:'teo_crash_road.png', slug:'EXT. WET HIGHWAY · SIX MONTHS AGO',
-    line:'She has known this for six months. She chose not to know it.',
+    line:'Some part of her has carried this for six months. She just kept choosing the version where she didn’t.',
     action:'', next:'stay_teo_4'},
   stay_teo_4:{ img:'teo_silhouette.png', slug:'THE MAN AT THE SCENE',
-    line:'“He knew it wasn’t going to be an accident.”',
-    action:'A figure at the edge of the tape, facing away, before anyone called it in.', next:'stay_teo_5'},
+    line:'“He knew it wasn’t going to be an accident. That’s the word he used, Maya. Knew.”',
+    action:'A figure just outside the tape line, back turned to the wreck — there before anyone had called it in.', next:'stay_teo_5'},
   stay_teo_5:{ img:'teo_gate_return.png', slug:'INT. GATE B22 · BACK WHERE SHE STARTED',
-    line:'Twelve years of trusting the person who was there first. She is recalculating all of it.',
+    line:'Twelve years of trusting whoever reached the scene first. She is re-running all of it now, frame by frame.',
     action:'', next:'c3'},
 
   /* ================= BRANCH C — CALL BACK (Connection) ================= */
   call_1:{ img:'callback_calling.png', slug:'INT. GATE B22 · 11:48 PM', chapter:'Call back · the voice',
-    line:'Two rings. His voice. The message she could recite in her sleep. But underneath it — quieter — something new.',
-    action:'A date, spoken under the static. The fourteenth. Three weeks from tonight.', next:'call_2'},
+    line:'Two rings. His voice. The greeting she can recite in her sleep — except tonight, underneath it, quieter, something that was never there.',
+    action:'A date, breathed under the static. The fourteenth. Three weeks from tonight.', next:'call_2'},
   call_2:{ img:'callback_timestamp.png', slug:'VOICEMAIL · TIMESTAMP IMPOSSIBLE',
-    line:'The recording was made after he died. She rules out the timestamp error. Low probability. That leaves the one she cannot say yet.',
-    action:'The plane at B22 pushes back without her. She has no feeling about it. She has one question: who accessed a dead man’s account tonight?', next:'cloud_1'},
+    line:'The recording was made after he died. She rules out the timestamp error the way she’d rule out a bad tip — possible, low probability. That leaves the one thing she can’t make her mouth say yet.',
+    action:'Through the glass, the plane at B22 pushes back without her. Nothing in her goes with it. One question left: who logged into a dead man’s account tonight?', next:'cloud_1'},
 
   /* ---------------- CHOICE 3 — CHARACTER STATE ---------------- */
   c3:{ img:'end_confront_gate.png', slug:'CHOICE — WHO DOES MAYA BECOME?', chapter:'The last choice',
-    line:'Enough. Not everything — she will never have everything. But enough to act. The question is what kind of act.',
+    line:'Enough. Not everything — she will never have everything. But enough to act. All that’s left to decide is who’s acting.',
     timer:20, timeoutTo:'end_reposition',   /* paralysis produces a hedge, not a declaration — Confront is the most decisive option, wrong physics for freezing */
     choices:[
-      {ct:'Confront', cx:'Make the call.', to:'end_reckon', maya:'connection'},
-      {ct:'Reposition', cx:'Buy more time.', to:'end_reposition', maya:'control'},
-      {ct:'Expose', cx:'Burn it down.', to:'end_expose', maya:'truth'},
+      {ct:'Confront', cx:'Make her answer.', to:'end_reckon', maya:'connection'},
+      {ct:'Reposition', cx:'Buy the hour.', to:'end_reposition', maya:'control'},
+      {ct:'Expose', cx:'Strike the match.', to:'end_expose', maya:'truth'},
     ]},
 
   /* ---------------- ENDINGS ---------------- */
   end_reckon:{ end:true, type:'reckon', label:'Ending — The Reckoning', img:'end_confront_final.png',
     title:'The Reckoning', maya:'connection',
-    text:'She makes the call. “I know what you did. I know who helped you. I know where the money went.” Silence. Then: “Maya.” Not Teo. Not Nadia. Daniel. The reckoning was never with the villain. It was with the man she has been grieving for six months — who let her grieve.'},
+    text:'She dials. Negotiator’s cadence — three facts, no tremor. “I know what you did. I know who helped you. I know where the money went.” A long silence. Then one word: “Maya.” Not Teo. Not Nadia. Daniel. The reckoning was never with the villain. It was with the man she has spent six months grieving — the man who stood back and let her.'},
 
   end_reposition:{ end:true, type:'reposition', label:'Ending — The Reposition', img:'end_reposition.png',
     title:'The Reposition', maya:'control',
-    text:'She calls Walsh. Fourteen years. He gives her forty-eight hours. “Where are you going?” She tells him. “Don’t get killed.” “I’ll try.” She boards a different flight — not the trap, the source. She hasn’t said anything that casual to anyone in six months.'},
+    text:'She calls Walsh. Fourteen years, and he gives her forty-eight hours without asking why. Then, quietly: “Where are you going?” She tells him. “Don’t get killed.” “I’ll try.” She boards a different flight — not the trap, the source of it. “I’ll try.” The most casual thing she’s said to anyone in six months.'},
 
   end_expose:{ end:true, type:'expose', label:'Ending — The Exposure', img:'end_expose.png',
     title:'The Exposure', maya:'truth',
-    text:'She attaches the files. Then the letter. One line to the journalist: “My husband found this. He ran out of time to do anything with it. I didn’t.” She sends it. Her badge is void from the moment it publishes. She knew that before she pressed send. Then she sits in the bright terminal light with nothing in her hands for the first time in six months.'},
+    text:'She attaches the files, then the letter. One line for the journalist: “My husband found this. He ran out of time. I haven’t.” Send. Her badge is dead the second it publishes — she did that math before her thumb moved. Then she sits under the terminal’s white light, hands empty, and for the first time in six months they don’t miss the weight.'},
 
   end_hidden:{ end:true, type:'hidden', label:'Hidden ending — The Truth', img:'hidden_daniel.png',
     title:'He Counted',  maya:'love',
-    text:'Her phone buzzes. Unknown number. His voice — not a recording. “You sent it.” Not a question. “I’ve been trying to reach you for six months.” She says: I know. I didn’t answer. “I know. I counted.” She counts fourteen. He counted fourteen. He is alive. He knows what she did. She knows what he did. They are even, in all the worst ways.'},
+    text:'Her phone buzzes. Unknown number. She answers before she can talk herself out of it. His voice — live, breathing, the small rasp no recording ever kept. “You sent it.” Not a question. “Six months, Maya. I kept trying.” Her palm flattens against the cold glass of the gate. I know, she says. I watched it ring and let it. A silence with him inside it. Then: “I know. I counted.” Fourteen, she whispers. “Fourteen,” he says. He is alive. He knows what she did. She knows what he did. They are even, in all the worst ways.'},
 
   end_doubt:{ end:true, type:'doubt', label:'Ending — The Waiting', img:'maya_wide.png',
     title:'The Waiting', maya:'doubt',
