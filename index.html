@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 009</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 010</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -480,6 +480,12 @@ function go(key){
   tap.style.display='none';
   renderMayas(false);
   document.getElementById('blackout').classList.toggle('on', !!node.dim);
+  // clear both text fields together, in sync with the frame/HUD reset — action was previously
+  // left showing the PREVIOUS beat's text until its own typewriter call fired after line finished,
+  // which reads as "old text lingers, then vanishes" instead of a clean cut like line gets
+  clearInterval(typing);
+  document.getElementById('line').innerHTML='';
+  document.getElementById('action').innerHTML='';
 
   // wordless/short beats (the pre-title atmosphere shots) still need a floor —
   // otherwise an empty line+action arms "continue" instantly and the frame never registers
