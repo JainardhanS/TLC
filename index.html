@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 011</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 012</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -339,7 +339,7 @@ const STORY = {
   board_3:{ img:'board_seated.png', slug:'INT. CABIN · DL516 · TAXIING',
     line:'Window seat. Fourteen A. He always took the window.',
     action:'Her hand finds Daniel’s phone in her bag, out of habit, and finds a flash drive wedged against it instead — one she has never seen.', next:'board_4'},
-  board_4:{ img:'board_messages.png', slug:'INT. CABIN · 30,000 FEET',
+  board_4:{ img:'board_ledger_screen.png', slug:'INT. CABIN · 30,000 FEET',
     line:'No signal up here. The drive doesn’t need one.',
     action:'A folder, no name, just a date. Wire transfers. Shell companies that mean nothing and everything. One line item, dated three weeks from tonight — London. Authorizing signature: N. Korolova.',
     next:'board_5'},
@@ -408,7 +408,7 @@ const STORY = {
   stay_letter_1:{ img:'cloud_letter.png', slug:'THE LETTER',
     line:'His handwriting. No envelope, no stamp — he never sent it. “M —” and then six months of silence where a name should be.',
     action:'“If you’re reading this, I ran out of time before I ran out of nerve. I need you to know I tried to fix what I started. I need you to know it wasn’t her fault.” The rest is a single dash, ink dragged where his hand gave out.', next:'stay_letter_2'},
-  stay_letter_2:{ img:'hidden_daniel.png', slug:'THE PHOTOGRAPH',
+  stay_letter_2:{ img:'stay_daniel_nadia_photo.png', slug:'THE PHOTOGRAPH',
     line:'Folded behind the letter — a photo. Daniel laughing, off-guard, mid-sentence. Nadia beside him, not posed, just caught.',
     action:'Not a work dinner. Not a cover story. Two people who trusted each other enough to look like that on camera. Whatever he was protecting her from, he wasn’t protecting himself from her.', next:'stay_letter_3'},
   stay_letter_3:{ img:'maya_eyes.png', slug:'WHAT SHE UNDERSTANDS, WHAT SHE DOESN’T',
@@ -439,13 +439,13 @@ const STORY = {
   call_2:{ img:'callback_timestamp.png', slug:'VOICEMAIL · TIMESTAMP IMPOSSIBLE',
     line:'She opens the file properties. Habit. Procedure. A timestamp sits under the recording like a dare.',
     action:'Recorded four days ago. He’s been gone six months. Clock error, she rules out first — servers don’t drift four days. Corrupted metadata, second — rare, but she’s seen it. That leaves the one she can’t say yet.', next:'logs_1'},
-  logs_1:{ img:'cloud_records.png', slug:'ACCOUNT ACTIVITY',
+  logs_1:{ img:'call_logs_sync.png', slug:'ACCOUNT ACTIVITY',
     line:'She still has his login. Never deleted it. Never asked herself why.',
     action:'“Last active: two days ago.” Not six months. Two days. A device she doesn’t recognize. A city she doesn’t recognize.', next:'logs_2'},
-  logs_2:{ img:'cloud_records.png', slug:'SYNC HISTORY',
+  logs_2:{ img:'call_logs_sync.png', slug:'SYNC HISTORY',
     line:'Before she can spiral, she finds the boring explanation sitting right there.',
     action:'A sync icon, quietly spinning, dated back six months and never stopped. His cloud backup — he never turned it off, and neither did she. That explains the folder breathing in the background. It doesn’t explain a stranger’s hand touching it two days ago.', next:'logs_3'},
-  logs_3:{ img:'cloud_records.png', slug:'WHAT MOVED',
+  logs_3:{ img:'call_logs_sync.png', slug:'WHAT MOVED',
     line:'One folder, renamed. One file, opened and closed in under a minute.',
     action:'No download. No trace of what was read — only that it was. Nadia’s name sits two folders over. Untouched. Or untouched that she can prove. She has a when. She has a how. She does not have a who, or a why.', next:'final_call_choice'},
 
