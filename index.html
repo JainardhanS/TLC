@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 007</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 008</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -263,71 +263,71 @@ const STORY = {
 
   /* ---------------- THE NEGOTIATION (new cold open · only Maya · raises stakes, establishes her) ---------------- */
   neg1:{ img:'neg1_rooftop.png', slug:'EXT. ROOFTOP · TWENTY STORIES UP',
-    line:'', action:'A rooftop. Twenty stories up. Wind. Somewhere below, sirens that haven’t stopped in an hour.',
+    line:'', action:'A rooftop, twenty stories up. Wind with teeth in it. Down on the street, sirens that started an hour ago and haven’t once stopped.',
     next:'neg2' },
   neg2:{ img:'neg2_listening.png', slug:'EXT. ROOFTOP · FIFTY MINUTES IN',
-    line:'She has been on the phone for fifty minutes. She has not raised her voice once.',
+    line:'Fifty minutes on this call. Her voice has never once left the register you’d use to say good morning.',
     action:'', next:'neg3' },
   neg3:{ img:'neg2_listening.png', slug:'EXT. ROOFTOP · FIFTY MINUTES IN',
-    line:'“I’m not going to lie to you. I don’t know if it gets better. I know you’re still here, and that’s the only fact I need right now.”',
-    action:'A voice on the other end, young, crying. She does not flinch. Her thumb moves once against the inside of her wrist — a habit that isn’t hers. She doesn’t notice she does it anymore.',
+    line:'“I won’t lie to you. I don’t know if it gets better. I know you’re still here. Right now that’s the only fact I need.”',
+    action:'On the line: a voice, young, coming apart. She doesn’t flinch. Her thumb strokes once across the inside of her wrist — a habit that was never hers. She stopped feeling herself do it months ago.',
     next:'neg4' },
   neg4:{ img:'neg4_after.png', slug:'EXT. ROOFTOP · AFTER',
-    line:'It ends. She does not celebrate. She has learned not to.',
-    action:'Somewhere below, they walk a kid off the ledge. She will never know the name. She never asks. Asking is how you make it personal, and personal is how you lose. She learned that the week they buried him.',
+    line:'It ends. One long breath, and nothing else. Celebrating is a thing she trained out of herself.',
+    action:'Below, they walk a kid back from the edge, an arm on each shoulder. She will never learn the name. She never asks. Names make it personal. Personal is how you lose. She learned that the week they buried him.',
     next:'open1' },
 
   /* ---------------- OPENING (wound before hook · ~25s muted) ---------------- */
   // op1 — TRANSITION (from professional competence to personal blank page)
   open1:{ img:'00_hero.png', slug:'INT. JFK T4 · GATE B22 · 11:47 PM',
-    line:'Nineteen years of choosing exactly what to say. Tonight she has nothing prepared.',
-    action:'London. An assignment that came through channels she doesn’t use anymore — requested by name. She could have said no. She never does.', next:'open2' },
+    line:'Nineteen years of knowing the exact next word. Tonight her mouth is empty.',
+    action:'London. The request came through channels she thought she’d sealed off — and it asked for her by name. She could have said no. She has never once said no.', next:'open2' },
 
   // op2 — ISOLATION (the world swallows her)
   open2:{ img:'maya_wide.png', slug:'INT. JFK T4 · THE LAST FLIGHT',
-    line:'Everyone around her moves like they have somewhere to be. She hasn’t moved in eleven minutes.',
+    line:'The terminal streams around her — rolling bags, final calls, everyone pulled toward somewhere. She hasn’t moved in eleven minutes.',
     action:'', next:'pt02' },
 
   // his phone, not hers — an archive, not a line. detonates in open5 precisely because it has no signal.
   pt02:{ img:'phone_archive.png', slug:'HER COAT POCKET · SIX MONTHS OF IT',
-    line:'', action:'A phone. Not hers — his, still in her coat six months later. No missed calls. He can’t call. Only what’s already there: a voicemail she has never opened. A photo folder she can’t delete. Her name, still saved as “Home.” A hand turns it face-down and walks away.',
+    line:'', action:'A phone. Not hers. His — riding in her coat for six months. No missed calls. He can’t call. Only what he left behind: one voicemail, forty-one seconds, never played. A photo folder she can’t bring herself to delete. Her number, still saved as “Home.” Her hand turns it face-down. Walks away.',
     next:'open3' },
 
   // op3 — THE WOUND (the object, not the count — carried, inert, sacred)
   open3:{ img:'phone_archive.png', slug:'HER COAT POCKET · SIX MONTHS OF IT',
-    line:'She has carried it every day for six months. It has no signal. It doesn’t need one.',
-    action:'She has learned to feel its weight in her coat without looking at it. Tonight, for the first time, she doesn’t turn it face-down.',
+    line:'Every day for six months. No signal, no service. It doesn’t need one.',
+    action:'She knows its weight the way she knows her own pulse — through the coat, without looking. Tonight, for the first time, she leaves it face-up.',
     next:'open4' },
 
-  // op4 — THE CRACK (the eyes carry what the face won't)
+  // op4 — THE CRACK (the eyes carry what the face won't; ring detail — kept per direction, no visible-jewelry conflict since this beat is an eyes ECU)
   open4:{ img:'maya_eyes.png', slug:'INT. GATE B22 · 11:48 PM',
-    line:'Six months a widow. She has gotten very good at looking like she is fine.',
+    line:'Six months a widow. She still wears the ring. She has trained herself to stop turning it when anyone is watching.',
     action:'', next:'open5' },
 
   // op5 — THE HOOK (now it lands — the call she cannot ignore)
   open5:{ img:'01_dontgeton.png', slug:'A MESSAGE · FROM A DEAD MAN',
-    line:'His number was cancelled the week of the funeral.',
-    action:'It lights up. An object with no signal, six months silent, suddenly has something to say. DANIEL. “Don’t get on.”',
+    line:'His number was disconnected the week of the funeral. She made that call herself.',
+    action:'It lights up. No signal. Six months dark. And it has something to say. One name: DANIEL. Three words: “Don’t get on.”',
     next:'c1' },
 
   /* ---------------- CHOICE 1 — THE GATE ---------------- */
   c1:{ img:'03_gate_choice.png', slug:'INT. GATE B22 · 4:00 TO DEPARTURE', chapter:'Choice — who is Maya right now?',
-    line:'From her seat she can still see the jet bridge door. It’s open. The queue is shorter than her reasons to sit here.',
+    line:'From her seat she can still see the jet bridge door. Open. The queue is down to a handful — shorter than her list of reasons to stay in this chair.',
     action:'',
     timer:18, timeoutTo:'reveal_board',
     choices:[
-      {ct:'Board', cx:'London is waiting. She told you: I never say no.', to:'reveal_board', maya:'control'},
-      {ct:'Stay',  cx:'Something’s wrong. You don’t board when something’s wrong.', to:'reveal_stay', maya:'doubt'},
-      {ct:'Call back', cx:'You have never once answered him. Answer now.', to:'reveal_call', maya:'connection'},
+      {ct:'Board', cx:'London is waiting. She told you herself: she never says no.', to:'reveal_board', maya:'control'},
+      {ct:'Stay',  cx:'Something is wrong. You don’t fly into wrong.', to:'reveal_stay', maya:'doubt'},
+      {ct:'Call back', cx:'Six months of not answering him. Answer him now.', to:'reveal_call', maya:'connection'},
     ]},
 
   /* ---------------- IDENTITY REVEAL (choice lands before interiority explains it — she tells you who she is, not the other way round) ---------------- */
   reveal_board:{ img:'03_gate_choice.png', dim:true, slug:'INT. GATE B22 · A DECISION MADE',
-    line:'Control.', action:'She has just told you who she is. She didn’t mean to.', next:'board_1' },
+    line:'Control.', action:'Nineteen years of choosing her words — and she didn’t mean to say that one.', next:'board_1' },
   reveal_stay:{ img:'03_gate_choice.png', dim:true, slug:'INT. GATE B22 · A DECISION MADE',
-    line:'Doubt.', action:'She has just told you who she is. She didn’t mean to.', next:'stay_1' },
+    line:'Doubt.', action:'Nineteen years of choosing her words — and she didn’t mean to say that one.', next:'stay_1' },
   reveal_call:{ img:'03_gate_choice.png', dim:true, slug:'INT. GATE B22 · A DECISION MADE',
-    line:'Connection.', action:'She has just told you who she is. She didn’t mean to.', next:'call_1' },
+    line:'Connection.', action:'Nineteen years of choosing her words — and she didn’t mean to say that one.', next:'call_1' },
 
   /* ================= BRANCH A — BOARD (Control) ================= */
   board_1:{ img:'board_jetbridge.png', slug:'INT. JET BRIDGE · 11:51 PM', chapter:'Board · the crossing',
