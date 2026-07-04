@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 012</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 013</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -332,56 +332,56 @@ const STORY = {
   /* ================= BRANCH A — BOARD (Control) — exclusive intel: financials only, found offline in his bag ================= */
   board_1:{ img:'board_jetbridge.png', slug:'INT. JET BRIDGE · 11:51 PM', chapter:'Board · the crossing',
     line:'She has walked into rooms with guns in them. This is a jet bridge. She tells herself that twice. The second time doesn’t take.',
-    action:'She doesn’t look back. Behind her the door thunks shut — soft, absolute, exactly as final as it sounds.', next:'board_2'},
+    action:'She doesn’t look back. Behind her the door thunks shut — soft, final, nothing in it left to negotiate.', next:'board_2'},
   board_2:{ img:'board_door.png', slug:'INT. CABIN DOOR · THRESHOLD',
-    line:'Twenty years of talking people out of rooms. She has never once needed to write anything down.',
-    action:'Palm flat on the cabin frame. One counted breath. Then she steps into the smaller world she just chose.', next:'board_3'},
+    line:'Twenty years of talking people out of rooms. Not once has she needed to write anything down.',
+    action:'Palm flat on the fuselage. One counted breath. Then she steps into the smaller world she just chose.', next:'board_3'},
   board_3:{ img:'board_seated.png', slug:'INT. CABIN · DL516 · TAXIING',
-    line:'Window seat. Fourteen A. He always took the window.',
-    action:'Her hand finds Daniel’s phone in her bag, out of habit, and finds a flash drive wedged against it instead — one she has never seen.', next:'board_4'},
+    line:'Window seat. Fourteen A. Daniel always took the window.',
+    action:'Out of habit, her hand goes to Daniel’s phone in her bag — and closes instead on a flash drive wedged against it. One she has never seen.', next:'board_4'},
   board_4:{ img:'board_ledger_screen.png', slug:'INT. CABIN · 30,000 FEET',
     line:'No signal up here. The drive doesn’t need one.',
-    action:'A folder, no name, just a date. Wire transfers. Shell companies that mean nothing and everything. One line item, dated three weeks from tonight — London. Authorizing signature: N. Korolova.',
+    action:'A folder with no name, just a date. Wire transfers. Shell companies nested like false walls. One line item dated three weeks from tonight — London. Authorizing signature: N. Korolova.',
     next:'board_5'},
   board_5:{ img:'board_face.png', slug:'INT. CABIN · ROW 14',
     line:'A name is not evidence. A name is a door with a handle.',
-    action:'She has a signature, a date, a number. What she doesn’t have is a reason, and the not-knowing sits in her chest like a held breath. She closes the laptop like closing a wound. It doesn’t stop bleeding.',
+    action:'She has a signature, a date, a number. What she doesn’t have is why. She closes the laptop the way you close a wound. It keeps bleeding anyway.',
     next:'c_board_final'},
 
   c_board_final:{ img:'board_face.png', slug:'INT. CABIN · THE LEDGER', chapter:'Choice — what does she do with the weapon?',
-    line:'Everyone lands eventually. What she does before that is hers alone.',
+    line:'Everyone lands eventually. What she does before wheels-down is hers alone.',
     action:'',
     timer:16, timeoutTo:'board_end_trap',
     choices:[
-      {ct:'Set the Trap', cx:'Use the wires and the dates. Be there when the money moves.', to:'board_end_trap', maya:'control'},
+      {ct:'Set the Trap', cx:'Use the wires and the dates. Be in the room when the money moves.', to:'board_end_trap', maya:'control'},
       {ct:'Expose', cx:'Hand the drive to daylight. Let someone else carry it.', to:'board_end_expose', maya:'truth'},
     ]},
 
   board_end_trap:{ end:true, type:'trap', label:'Ending — Set the Trap', img:'end_reposition.png',
     title:'Set the Trap', maya:'control',
-    text:'Three weeks. She has three weeks before the next transfer clears. She photographs every page before the drive goes back in the bag — evidence only survives if it survives her. She won’t confront Nadia. She won’t call it in. She’ll be standing in the room when the money moves, and she’ll already know where it’s going. The ring turns once under her thumb. Not comfort. A countdown. Some widows grieve. Maya was never going to be the first kind.'},
+    text:'Three weeks before the next transfer clears. She photographs every page before the drive goes back in the bag — evidence only survives if it survives her. She won’t confront Nadia. She won’t call it in. She’ll be standing in the room when the money moves, already knowing where it’s going. The ring turns once under her thumb. Not comfort. A countdown. Some widows grieve. Some collect. Maya was never going to be the first kind.'},
 
   board_end_expose:{ end:true, type:'expose_board', label:'Ending — The Exposure', img:'end_expose.png',
     title:'The Exposure', maya:'truth',
-    text:'She attaches the wire records. Then the shell company filings. Then the transfer dated the week before London. No letter this time — just a subject line: “Documentation attached.” Numbers don’t need her grief. Her badge is dead the second it publishes; she confirmed the routing numbers twice before she let herself feel that. What the money proves about Daniel, or Nadia, or nothing, she leaves for someone else to decide. Send. She sits under the terminal’s white light, hands empty, finally still.'},
+    text:'She attaches the wire records. Then the shell company filings. Then the transfer dated the week before London. No letter this time — just a subject line: “Documentation attached.” Numbers don’t need her grief. Her badge dies the second this publishes; she checked the routing numbers twice before she let herself feel that. What the money proves about Daniel, or Nadia, or nothing at all — someone else gets to decide. Send. She sits in the terminal’s white light, hands empty, finally still.'},
 
   /* ================= BRANCH B — STAY (Doubt) — exclusive intel: the unfinished letter + a warm photo, found in his things ================= */
   stay_1:{ img:'stay_gate.png', slug:'INT. GATE B22 · 11:52 PM', chapter:'Stay · the gate empties',
-    line:'Ninety-one seconds since she stepped out of line. Ninety-two. She’s still counting. Counting is the last thing that leaves her.',
-    action:'The gate empties like a tide going out — roller bags, sneakers, a last boarding pass held high. Maya is the only fixed point.', next:'stay_2'},
+    line:'Ninety-one seconds since she stepped out of line. Ninety-two. Still counting. It’s what she does instead of shaking.',
+    action:'The gate drains out around her — roller bags, sneakers, one last boarding pass held overhead. Then rows of empty seats, and Maya, the only thing in the terminal not going anywhere.', next:'stay_2'},
   stay_2:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · NADIA CALLING',
-    line:'NADIA KOROLOVA. The photo smiles, summer-warm, against the cold glass. Third ring, and Maya still hasn’t decided.',
-    action:'She picks up and says nothing. Four seconds of airport noise on Nadia’s end, not one word of hello — like she already knew there’d be silence and built room for it. Then, soft: “Maya. You didn’t board.” Not a question.', next:'stay_3'},
+    line:'NADIA KOROLOVA. Her contact photo smiles up from a dead man’s phone, summer-warm. Third ring, and Maya’s thumb still hasn’t decided.',
+    action:'She answers and says nothing. Four seconds of airport noise on Nadia’s end — no hello, no who is this. She’d left room for the silence, like she knew it was coming. Then, soft: “Maya. You didn’t board.” Not a question.', next:'stay_3'},
   stay_3:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · WHAT SHE DOESN’T SAY',
-    line:'“Are you safe?” Nadia asks it twice. Not “where are you going” — not once.',
-    action:'Maya hangs up before she has to answer either version. Whatever Nadia is afraid of, it isn’t getting caught.', next:'c2_stay'},
+    line:'“Are you safe?” She asks it twice. Never “where are you going.” Not once.',
+    action:'Maya hangs up rather than answer either time. Whatever Nadia is afraid of, it isn’t getting caught. It sounded like fear for her.', next:'c2_stay'},
 
   c2_stay:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · 11:58 PM', chapter:'Choice — where does she start looking?',
-    line:'Two names left in her hand. Twelve years and a badge — or a dead man’s handwriting, still somewhere in a box she never unpacked.',
+    line:'Two calls she can still make. Twelve years and a badge — or a dead man’s handwriting in a box she’s never had the nerve to open.',
     timer:16, timeoutTo:'stay_box_1',
     choices:[
       {ct:'Call Teo', cx:'He was there that night.', to:'stay_teo_1', maya:'connection'},
-      {ct:'Open his things', cx:'The box she hasn’t touched.', to:'stay_box_1', maya:'doubt'},
+      {ct:'Open his things', cx:'Six months, still taped.', to:'stay_box_1', maya:'doubt'},
     ]},
 
   /* Stay → Call Teo sub-branch (protected — the single most praised material in the project, unchanged) */
@@ -402,73 +402,73 @@ const STORY = {
     action:'', next:'stay_letter_1'},
 
   stay_box_1:{ img:'phone_archive.png', slug:'INT. GATE B22 · THE THINGS SHE KEPT',
-    line:'One shoebox, still taped, six months in the hall closet. She has moved apartments around it rather than open it.',
-    action:'Cufflinks. A conference badge. A charger for a phone that doesn’t ring. And underneath, a folder she doesn’t recognize as his — because it isn’t. It’s addressed, in his hand, to someone else.', next:'stay_letter_1'},
+    line:'One shoebox, still taped. She has moved apartments around it — six months of choosing the closet door over the lid.',
+    action:'Cufflinks. A conference badge. A charger for a phone no one will answer. And beneath them, a folder she doesn’t recognize — because it was never meant for her. His handwriting on the front, addressed to someone else.', next:'stay_letter_1'},
 
   stay_letter_1:{ img:'cloud_letter.png', slug:'THE LETTER',
-    line:'His handwriting. No envelope, no stamp — he never sent it. “M —” and then six months of silence where a name should be.',
-    action:'“If you’re reading this, I ran out of time before I ran out of nerve. I need you to know I tried to fix what I started. I need you to know it wasn’t her fault.” The rest is a single dash, ink dragged where his hand gave out.', next:'stay_letter_2'},
+    line:'His handwriting. No envelope, no stamp — it never left the house. “M —” and then a blank where the name should be, six months wide.',
+    action:'“If you’re reading this, I ran out of time before I ran out of nerve. I need you to know I tried to fix what I started. I need you to know it wasn’t her fault.” Then a single dragged dash, the ink thinning where his hand gave out.', next:'stay_letter_2'},
   stay_letter_2:{ img:'stay_daniel_nadia_photo.png', slug:'THE PHOTOGRAPH',
-    line:'Folded behind the letter — a photo. Daniel laughing, off-guard, mid-sentence. Nadia beside him, not posed, just caught.',
-    action:'Not a work dinner. Not a cover story. Two people who trusted each other enough to look like that on camera. Whatever he was protecting her from, he wasn’t protecting himself from her.', next:'stay_letter_3'},
+    line:'Folded behind the letter, a photograph. Daniel laughing — really laughing, mid-sentence, off-guard. Nadia beside him, not posing. Caught.',
+    action:'No table of colleagues, no careful distance. Two people easy enough with each other to be caught looking like that. Whatever he was protecting her from, he wasn’t protecting himself from her.', next:'stay_letter_3'},
   stay_letter_3:{ img:'maya_eyes.png', slug:'WHAT SHE UNDERSTANDS, WHAT SHE DOESN’T',
-    line:'She knows now why he was scared. She still doesn’t know of what, or of whom, only that it wasn’t the woman in the photograph.',
-    action:'An unfinished letter and a warm photograph are not a case. They are a man, allowed back for one page, still unable to finish a sentence to save his own life.', next:'c3_stay'},
+    line:'She knows now that he was scared, and for how long. Of what, of whom — the letter won’t say. Only this much: not the woman in the photograph.',
+    action:'An unfinished letter and a warm photograph don’t make a case. They make a man — allowed back for one page, and still unable to finish a sentence to save his life.', next:'c3_stay'},
 
   c3_stay:{ img:'end_confront_gate.png', slug:'INT. GATE B22 · THE LAST CHOICE', chapter:'The last choice',
-    line:'Enough to grieve. Not enough to aim at anyone. All that’s left is what she does with a truth that has nowhere left to go.',
+    line:'Enough to grieve him properly. Not enough to aim at anyone. The only question left is what she does with a truth that has nowhere to go.',
     action:'',
     timer:20, timeoutTo:'end_letrest',
     choices:[
       {ct:'Let Him Rest', cx:'Some doors you close from the inside.', to:'end_letrest', maya:'doubt'},
-      {ct:'Expose', cx:'Make it public. Let them read what he couldn’t say.', to:'end_expose_stay', maya:'truth'},
+      {ct:'Expose', cx:'Let the world read what he couldn’t say.', to:'end_expose_stay', maya:'truth'},
     ]},
 
   end_letrest:{ end:true, type:'letrest', label:'Ending — Let Him Rest', img:'maya_wide.png',
     title:'Let Him Rest', maya:'doubt',
-    text:'She folds the letter back along its own crease, photograph inside it, and doesn’t refold it a second time to check. Some evidence doesn’t want a verdict. It wants a witness, and she’s already been that. Twenty years of getting strangers to put down what they’re holding — she finally uses it on herself. Nothing gets sent. No one gets called. She has the file, the training, the badge to make it stick. She lets the folder close instead — not because she doubts what’s in it, but because she has finally found something a negotiator doesn’t get to solve: her own grief, sitting across the table, refusing every offer she makes it. She puts the letter in her coat, not the box. That much she’ll allow him.'},
+    text:'She folds the letter back along its own crease, photograph inside, and doesn’t check it twice. Some evidence doesn’t want a verdict. It wants a witness, and it has one. Twenty years of talking strangers into putting down what they’re holding — tonight the hands are hers. Nothing gets sent. No one gets called. She has the file, the training, the badge to make it stick, and she lets the folder close anyway — not because she doubts a word of it, but because grief is the one thing across the table a negotiator doesn’t get to solve: it refuses every offer, waits out every silence, and wants nothing from her but time. The letter goes in her coat, not the box. That much she’ll allow him.'},
 
   end_expose_stay:{ end:true, type:'expose_stay', label:'Ending — The Exposure', img:'end_expose.png',
     title:'The Exposure', maya:'truth',
-    text:'She attaches the photo first — Daniel laughing, Nadia’s hand on his arm, a warmth she never got to ask him about. Then the letter with the single “M.” She hates that she’s giving strangers something private of his, the one soft thing she found. It proves nothing, not really — a woman’s initial, an afternoon she wasn’t in. Send anyway. Her badge is dead the second it publishes. She sits under the terminal’s white light, hands finally, unbearably empty.'},
+    text:'She attaches the photo first — Daniel laughing, Nadia’s hand on his arm, a warmth she never got the chance to ask him about. Then the letter, with its single “M.” She hates this part: the one soft thing she found of his, handed to strangers. It proves nothing, not really — an initial, an afternoon she wasn’t in. Send anyway. Her badge is dead the second it publishes, and she knew that before her thumb moved. She sits under the terminal’s white light, hands finally, unbearably empty.'},
 
   /* ================= BRANCH C — CALL BACK (Connection) — exclusive intel: the impossible voicemail + login/sync anomaly ================= */
   call_1:{ img:'callback_calling.png', slug:'INT. GATE B22 · 11:48 PM', chapter:'Call back · the voice',
     line:'Two rings. Then his voicemail greeting, word for word.',
-    action:'“You’ve reached Daniel — leave it after the tone.” Same as always. A half-second of dead air after the beep — then something underneath it. A breath that isn’t static. Not words. Just someone there, and then not.', next:'call_2'},
+    action:'“You’ve reached Daniel — leave it after the tone.” Same as always. Then the beep — and under the half-second of dead air, something. A breath that isn’t static. Not words. Someone there. Then not.', next:'call_2'},
   call_2:{ img:'callback_timestamp.png', slug:'VOICEMAIL · TIMESTAMP IMPOSSIBLE',
-    line:'She opens the file properties. Habit. Procedure. A timestamp sits under the recording like a dare.',
-    action:'Recorded four days ago. He’s been gone six months. Clock error, she rules out first — servers don’t drift four days. Corrupted metadata, second — rare, but she’s seen it. That leaves the one she can’t say yet.', next:'logs_1'},
+    line:'She opens the file properties. Habit. Procedure. The timestamp sits under the recording like a dare.',
+    action:'Recorded four days ago. He’s been dead six months. Clock error goes first — servers don’t drift four days. Corrupted metadata, second — rare, but she’s seen it. Which leaves the one she can’t say yet.', next:'logs_1'},
   logs_1:{ img:'call_logs_sync.png', slug:'ACCOUNT ACTIVITY',
     line:'She still has his login. Never deleted it. Never asked herself why.',
-    action:'“Last active: two days ago.” Not six months. Two days. A device she doesn’t recognize. A city she doesn’t recognize.', next:'logs_2'},
+    action:'“Last active: two days ago.” Not six months. Two days. A device she doesn’t recognize, in a city she has no reason to know.', next:'logs_2'},
   logs_2:{ img:'call_logs_sync.png', slug:'SYNC HISTORY',
-    line:'Before she can spiral, she finds the boring explanation sitting right there.',
-    action:'A sync icon, quietly spinning, dated back six months and never stopped. His cloud backup — he never turned it off, and neither did she. That explains the folder breathing in the background. It doesn’t explain a stranger’s hand touching it two days ago.', next:'logs_3'},
+    line:'Before she can spiral, the boring explanation is sitting right there.',
+    action:'A sync icon, still spinning — six months and it never stopped. His cloud backup: he never turned it off, and neither did she. That explains the account breathing in the background. It doesn’t explain a stranger’s hand on it two days ago.', next:'logs_3'},
   logs_3:{ img:'call_logs_sync.png', slug:'WHAT MOVED',
     line:'One folder, renamed. One file, opened and closed in under a minute.',
-    action:'No download. No trace of what was read — only that it was. Nadia’s name sits two folders over. Untouched. Or untouched that she can prove. She has a when. She has a how. She does not have a who, or a why.', next:'final_call_choice'},
+    action:'No download. No record of what was read — only that it was. Nadia’s name sits two folders over. Untouched — or untouched as far as she can prove. She has a when and a how. No who. No why.', next:'final_call_choice'},
 
   final_call_choice:{ img:'callback_timestamp.png', slug:'GATE B22 · LAST CALL', chapter:'Choice — what does she do with an anomaly?',
     line:'Two facts that shouldn’t exist. No one left to ask.',
     action:'',
     timer:16, timeoutTo:'call_end_trace',
     choices:[
-      {ct:'Trace it', cx:'Go toward it herself. No call, no confession — just where the login leads.', to:'call_end_trace', maya:'connection'},
+      {ct:'Trace it', cx:'Go toward it herself. No call ahead, no confession — just where the login leads.', to:'call_end_trace', maya:'connection'},
       {ct:'Expose', cx:'Put the logs and the recording in daylight.', to:'end_expose_call', maya:'truth'},
     ]},
 
   call_end_trace:{ end:true, type:'trace', label:'Ending — The Trace', img:'maya_wide.png',
     title:'The Trace', maya:'connection',
-    text:'She doesn’t call the number back a second time. Some doors you don’t knock on twice. She misses London — not the flight, the whole assignment, quietly, without telling anyone why. The device behind the login resolves to an address she drives to alone, radio off, the voicemail open on the seat beside her like something she’s carrying instead of listening to. No negotiation gets her through this door. No script for this one — she wrote the last one herself, and it didn’t hold. Whatever is behind it, she is done being the last to know.'},
+    text:'She doesn’t call the number a second time. Some doors you don’t knock on twice. She misses London — not the flight, the whole assignment — quietly, telling no one why. The login resolves to an address, and she drives there alone, radio off, the voicemail open on the seat beside her: something she’s carrying now, not listening to. There’s no negotiating her way through this door. No script — she wrote her last one herself, and it didn’t hold. Whatever’s behind it, she is done being the last to know.'},
 
   end_expose_call:{ end:true, type:'expose_call', label:'Ending — The Exposure', img:'end_expose.png',
     title:'The Exposure', maya:'truth',
-    text:'She attaches the login logs. Then the voicemail, timestamped four minutes after his heart stopped, by every record she has. She doesn’t caption it. She doesn’t know what it means — only that someone should look at what she can’t make add up. Her badge is dead the second it publishes; that math she’s sure of, even when nothing else holds. Send. She sits under the terminal’s white light, hands empty for the first time in six months, no answer, just quiet.'},
+    text:'She attaches the login logs. Then the voicemail — recorded four days ago, by every record she has, six months after he flatlined. No caption. She doesn’t know what it means, only that someone should look at what she can’t make add up. Her badge is dead the second this publishes; that math she’s sure of, even when nothing else holds. Send. She sits under the terminal’s white light, hands empty for the first time in six months. No answer. Just quiet.'},
 
   end_hidden:{ end:true, type:'hidden', label:'Hidden ending — The Truth', img:'hidden_daniel.png',
     title:'He Counted',  maya:'love',
-    text:'Her phone buzzes. Unknown number. She answers before she can talk herself out of it. His voice — live, breathing, the small rasp no recording ever kept. “You sent it.” Not a question — it’s already on a wire, her name attached. “Six months, Maya. I kept trying.” Her palm flattens against the cold glass. I know, she says. I watched it ring and let it. A silence with him inside it, his to fill. He doesn’t. “I counted,” he says. Fourteen, she whispers. He doesn’t correct her. He is alive. She let a phone ring. He let a wife bury him and stayed close enough to watch her do it. Not even. Not close.'},
+    text:'Her phone buzzes. Unknown number. She answers before she can talk herself out of it. His voice — live, breathing, the small rasp no recording ever kept. “You sent it.” Not a question; it’s already on a wire, her name attached. “Six months, Maya. I kept trying.” Her palm flattens against the cold glass. I know, she says. I watched it ring. I let it. A silence with him inside it, his to fill. He doesn’t. “I counted,” he says. Fourteen, she whispers. He doesn’t correct her. He is alive. She let a phone ring. He let a wife bury him and stayed close enough to watch her do it. Not even. Not close.'},
 };
 
 /* the hidden path: started Stay (doubt) at c1, ended by choosing Expose (truth) at c3_stay — the mid-branch
