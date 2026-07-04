@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<!-- CONFIDENTIAL · LAST CALL / MAYA — internal production tool. Do not share beyond the invited focus group. -->
+<title>BACKLOT — frame generation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --maya-cold:#9db4d4;
+  --maya-ice:#e8f1fb;
+  --accent:#6f8fff;
+  --warn:#e0564f;
+  --ok:#6fdb9a;
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Playfair Display',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:#04060c;color:var(--maya-ice);font-family:var(--mono)}
+body{padding:32px 20px 80px;max-width:920px;margin:0 auto}
+
+header{margin-bottom:28px}
+header .mark{font-size:10px;letter-spacing:0.3em;color:var(--maya-cold);text-transform:uppercase}
+header h1{font-family:var(--serif);font-weight:600;font-size:34px;margin:8px 0 6px;letter-spacing:0.01em}
+header .sub{font-size:12.5px;color:rgba(210,226,248,0.7);line-height:1.6;max-width:60ch}
+
+.panel{border:0.5px solid rgba(140,175,225,0.28);background:rgba(20,32,54,0.4);
+  backdrop-filter:blur(6px);border-radius:14px;padding:20px 20px 22px;margin-bottom:22px}
+.panel h2{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--maya-cold);margin-bottom:14px}
+
+label{display:block;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(210,226,248,0.65);margin-bottom:6px}
+.row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.field{flex:1;min-width:200px}
+.field:last-child{margin-right:0}
+
+input[type=text],input[type=password],input[type=number],textarea,select{
+  width:100%;background:rgba(4,6,12,0.6);border:0.5px solid rgba(140,175,225,0.32);
+  border-radius:8px;padding:10px 12px;color:var(--maya-ice);font-family:var(--mono);font-size:13px;
+  outline:none;transition:border-color .15s}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:78px;line-height:1.5}
+select{cursor:pointer}
+option{background:#0a0e18}
+
+.keyrow{display:flex;gap:10px;align-items:flex-end}
+.keyrow .field{flex:1}
+.hint{font-size:11px;color:rgba(210,226,248,0.5);line-height:1.6;margin-top:8px}
+.hint a{color:var(--maya-cold)}
+
+.btn{appearance:none;border:0.5px solid var(--accent);background:rgba(111,143,255,0.14);
+  color:var(--maya-ice);font-family:var(--mono);font-size:12px;letter-spacing:0.08em;
+  text-transform:uppercase;padding:11px 20px;border-radius:8px;cursor:pointer;transition:.15s;white-space:nowrap}
+.btn:hover:not(:disabled){background:var(--accent);color:#04060c}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
+.btn.ghost{border-color:rgba(140,175,225,0.32);background:transparent}
+.btn.ghost:hover:not(:disabled){background:rgba(140,175,225,0.16);color:var(--maya-ice)}
+.btn.small{padding:7px 12px;font-size:10.5px}
+
+.status{font-size:12px;color:rgba(210,226,248,0.8);margin-top:14px;min-height:1.4em;
+  display:flex;align-items:center;gap:8px}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--maya-cold);flex-shrink:0}
+.status.busy .dot{background:var(--accent);animation:pulse 1s ease-in-out infinite}
+.status.err .dot{background:var(--warn)}
+.status.ok .dot{background:var(--ok)}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{border:0.5px solid rgba(140,175,225,0.28);border-radius:12px;overflow:hidden;background:rgba(4,6,12,0.5)}
+.card img{width:100%;display:block;background:#0a0e18}
+.card .meta{padding:10px 12px 12px}
+.card input[type=text]{font-size:11.5px;padding:7px 9px;margin-bottom:8px}
+.card .actions{display:flex;gap:8px}
+
+.log{font-size:11.5px;color:rgba(210,226,248,0.6);line-height:1.9;max-height:220px;overflow-y:auto}
+.log .entry{border-bottom:0.5px solid rgba(140,175,225,0.14);padding:6px 0}
+.log .entry:last-child{border-bottom:none}
+.log .p{color:rgba(210,226,248,0.85)}
+.log .m{color:var(--maya-cold);font-size:10px;letter-spacing:0.05em}
+.empty{font-size:12px;color:rgba(210,226,248,0.4);padding:6px 0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">L A S T &nbsp;C A L L &nbsp;·&nbsp; backlot</div>
+  <h1>Backlot</h1>
+  <div class="sub">Internal frame-generation tool. Renders new stills through fal.ai's queue API for review, then hands you a PNG to drop into <code>/frames</code> under the project's existing naming convention.</div>
+</header>
+
+<div class="panel">
+  <h2>fal.ai key</h2>
+  <div class="keyrow">
+    <div class="field">
+      <label for="falKey">API key</label>
+      <input type="password" id="falKey" placeholder="key_id:key_secret" autocomplete="off">
+    </div>
+    <button class="btn ghost" id="saveKeyBtn">Save</button>
+    <button class="btn ghost" id="clearKeyBtn">Clear</button>
+  </div>
+  <div class="hint">Stored only in this browser's <code>localStorage</code> — never written to the repo. Get a key at <a href="https://fal.ai/dashboard/keys" target="_blank" rel="noopener">fal.ai/dashboard/keys</a>. Requests go straight from this page to fal.ai; treat this file as internal-only.</div>
+</div>
+
+<div class="panel">
+  <h2>Generate</h2>
+  <div class="row">
+    <div class="field" style="flex:2">
+      <label for="model">Model</label>
+      <select id="model">
+        <option value="fal-ai/flux-pro/v1.1-ultra">flux-pro/v1.1-ultra — highest fidelity, cinematic</option>
+        <option value="fal-ai/flux/dev">flux/dev — fast, good default</option>
+        <option value="fal-ai/recraft/v3/text-to-image">recraft/v3 — stylized / illustrative</option>
+        <option value="custom">custom model id…</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="customModel">Custom model id</label>
+      <input type="text" id="customModel" placeholder="fal-ai/…" disabled>
+    </div>
+  </div>
+
+  <div class="field" style="margin-bottom:16px">
+    <label for="prompt">Prompt</label>
+    <textarea id="prompt" placeholder="Cinematic still, INT. JFK T4 gate B22, 11:47 PM, cold blue practicals, shallow depth of field…"></textarea>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="aspect">Aspect ratio</label>
+      <select id="aspect">
+        <option value="portrait_16_9" selected>Portrait 9:16 (stage default)</option>
+        <option value="portrait_4_3">Portrait 4:3</option>
+        <option value="square_hd">Square</option>
+        <option value="landscape_16_9">Landscape 16:9</option>
+        <option value="landscape_4_3">Landscape 4:3</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="count">Images</label>
+      <input type="number" id="count" value="2" min="1" max="4">
+    </div>
+    <div class="field">
+      <label for="seed">Seed (optional)</label>
+      <input type="number" id="seed" placeholder="random">
+    </div>
+  </div>
+
+  <button class="btn" id="genBtn">Generate</button>
+  <div class="status" id="status" style="display:none"><span class="dot"></span><span class="txt"></span></div>
+</div>
+
+<div class="panel" id="resultsPanel" style="display:none">
+  <h2>Results</h2>
+  <div class="results" id="results"></div>
+</div>
+
+<div class="panel">
+  <h2>Recent prompts</h2>
+  <div class="log" id="log"><div class="empty">Nothing generated yet this session.</div></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const LS_KEY = 'lc_backlot_falkey';
+const LS_LOG = 'lc_backlot_log';
+
+/* ---------- key persistence ---------- */
+$('falKey').value = localStorage.getItem(LS_KEY) || '';
+$('saveKeyBtn').onclick = () => { localStorage.setItem(LS_KEY, $('falKey').value.trim()); setStatus('Key saved to this browser.', 'ok'); };
+$('clearKeyBtn').onclick = () => { localStorage.removeItem(LS_KEY); $('falKey').value=''; setStatus('Key cleared.', ''); };
+
+/* ---------- model select ---------- */
+$('model').onchange = e => { $('customModel').disabled = e.target.value !== 'custom'; };
+
+/* ---------- status helper ---------- */
+function setStatus(msg, cls){
+  const s = $('status');
+  s.style.display = 'flex';
+  s.className = 'status' + (cls ? ' '+cls : '');
+  s.querySelector('.txt').textContent = msg;
+}
+
+/* ---------- history log ---------- */
+function loadLog(){ try{ return JSON.parse(localStorage.getItem(LS_LOG)||'[]'); }catch(e){ return []; } }
+function pushLog(entry){
+  const l = loadLog(); l.unshift(entry);
+  localStorage.setItem(LS_LOG, JSON.stringify(l.slice(0,25)));
+  renderLog();
+}
+function renderLog(){
+  const l = loadLog();
+  const el = $('log');
+  if(!l.length){ el.innerHTML = '<div class="empty">Nothing generated yet this session.</div>'; return; }
+  el.innerHTML = l.map(e => `<div class="entry"><div class="p">${escapeHtml(e.prompt)}</div><div class="m">${e.model} · ${e.aspect} · ${new Date(e.at).toLocaleString()}</div></div>`).join('');
+}
+function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+renderLog();
+
+/* ---------- filename suggestion ---------- */
+function slugify(s){
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'').split('_').slice(0,5).join('_') || 'frame';
+}
+
+/* ---------- fal.ai queue API (submit → poll → result) ---------- */
+async function falGenerate(model, key, input){
+  const submitRes = await fetch(`https://queue.fal.run/${model}`, {
+    method: 'POST',
+    headers: { 'Authorization': `Key ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(input)
+  });
+  if(!submitRes.ok) throw new Error(`Submit failed (${submitRes.status}): ${await submitRes.text()}`);
+  const { status_url, response_url } = await submitRes.json();
+
+  let status = 'IN_QUEUE';
+  while(status !== 'COMPLETED'){
+    await new Promise(r => setTimeout(r, 1500));
+    const statusRes = await fetch(status_url, { headers: { 'Authorization': `Key ${key}` } });
+    if(!statusRes.ok) throw new Error(`Status check failed (${statusRes.status})`);
+    const statusJson = await statusRes.json();
+    status = statusJson.status;
+    if(status === 'IN_QUEUE'){
+      setStatus(`Queued — position ${statusJson.queue_position ?? '?'}…`, 'busy');
+    } else if(status === 'IN_PROGRESS'){
+      setStatus('Rendering…', 'busy');
+    } else if(status !== 'COMPLETED'){
+      throw new Error(`Unexpected status: ${status}`);
+    }
+  }
+
+  const resultRes = await fetch(response_url, { headers: { 'Authorization': `Key ${key}` } });
+  if(!resultRes.ok) throw new Error(`Result fetch failed (${resultRes.status}): ${await resultRes.text()}`);
+  return resultRes.json();
+}
+
+/* ---------- generate button ---------- */
+$('genBtn').onclick = async () => {
+  const key = $('falKey').value.trim();
+  const prompt = $('prompt').value.trim();
+  const modelSel = $('model').value;
+  const model = modelSel === 'custom' ? $('customModel').value.trim() : modelSel;
+  const aspect = $('aspect').value;
+  const count = Math.min(4, Math.max(1, +$('count').value || 1));
+  const seed = $('seed').value ? +$('seed').value : undefined;
+
+  if(!key){ setStatus('Add and save a fal.ai API key first.', 'err'); return; }
+  if(!prompt){ setStatus('Write a prompt first.', 'err'); return; }
+  if(!model){ setStatus('Choose or enter a model id.', 'err'); return; }
+
+  $('genBtn').disabled = true;
+  setStatus('Submitting…', 'busy');
+
+  try{
+    const input = { prompt, image_size: aspect, num_images: count };
+    if(seed !== undefined) input.seed = seed;
+
+    const result = await falGenerate(model, key, input);
+    const images = result.images || [];
+    if(!images.length) throw new Error('No images returned.');
+
+    renderResults(images, prompt);
+    pushLog({ prompt, model, aspect, at: Date.now() });
+    setStatus(`Done — ${images.length} image${images.length>1?'s':''} generated.`, 'ok');
+  }catch(err){
+    setStatus(err.message || String(err), 'err');
+  }finally{
+    $('genBtn').disabled = false;
+  }
+};
+
+function renderResults(images, prompt){
+  const panel = $('resultsPanel');
+  const grid = $('results');
+  panel.style.display = 'block';
+  const base = slugify(prompt);
+  grid.innerHTML = images.map((img, i) => `
+    <div class="card">
+      <img src="${img.url}" alt="generated frame ${i+1}">
+      <div class="meta">
+        <input type="text" class="fname" value="${base}${images.length>1 ? '_'+(i+1) : ''}.png">
+        <div class="actions">
+          <button class="btn small dl" data-url="${img.url}">Download</button>
+          <button class="btn small ghost open" data-url="${img.url}">Open</button>
+        </div>
+      </div>
+    </div>`).join('');
+
+  grid.querySelectorAll('.dl').forEach(btn => btn.onclick = async () => {
+    const card = btn.closest('.card');
+    const filename = card.querySelector('.fname').value.trim() || 'frame.png';
+    const blob = await (await fetch(btn.dataset.url)).blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  grid.querySelectorAll('.open').forEach(btn => btn.onclick = () => window.open(btn.dataset.url, '_blank'));
+}
+</script>
+</body>
+</html>
