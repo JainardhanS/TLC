@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 014</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 015</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -399,7 +399,38 @@ const STORY = {
     action:'A figure just outside the tape line, back turned to the wreck — there before anyone had called it in.', next:'stay_teo_5'},
   stay_teo_5:{ img:'teo_gate_return.png', slug:'INT. GATE B22 · BACK WHERE SHE STARTED',
     line:'Twelve years of trusting whoever reached the scene first. She is re-running all of it now, frame by frame.',
-    action:'', next:'stay_letter_1'},
+    action:'', next:'stay_teo_6'},
+
+  /* Teo-lane's own completion — exclusive to this lane, does not converge with the box/letter lane */
+  stay_teo_6:{ img:'teo_gate_return.png', slug:'INT. GATE B22 · THE QUESTION SHE HASN’T ASKED',
+    line:'Six months of a name Teo has never said out loud. She can hear its exact shape in how carefully he isn’t saying it now.',
+    action:'“Who was he, Teo.” Four words, and neither of them gets to take them back once they’re out of her mouth.', next:'stay_teo_7'},
+  stay_teo_7:{ img:'teo_confront.png', slug:'PHONE · WHAT TEO KEPT',
+    line:'Silence long enough that she checks the screen — call still open, seconds still climbing. Then: “I’ve had six months to decide that wasn’t my business.”',
+    action:'The voice of a man who has lost this argument with himself so many times he knows both sides by heart.', next:'stay_teo_8'},
+  stay_teo_8:{ img:'teo_silhouette.png', slug:'THE ADMISSION',
+    line:'“I saw him before the tape went up, Maya. I didn’t call it in. I told myself it was shock. I’m still telling myself.”',
+    action:'Six months of choosing that sentence over the truer one — every morning, all over again. She recognizes the choosing. She’s made it herself, about smaller things.', next:'stay_teo_9'},
+  stay_teo_9:{ img:'teo_gate_return.png', slug:'WHAT SHE DOES WITH A FRIEND’S SILENCE',
+    line:'He’s not a suspect. Not a stranger’s file. He’s a man breathing on the other end of the line, waiting to hear the price of six months of silence.',
+    action:'Twelve years of talking people down from ledges. This is the first time the choice is hers — the open hand, or the push.', next:'c4_teo'},
+
+  c4_teo:{ img:'end_confront_gate.png', slug:'INT. GATE B22 · THE LAST CALL — TEO', chapter:'The last choice',
+    line:'One name, still unsaid. One man who has carried it so long that getting caught sounds like rescue.',
+    action:'',
+    timer:20, timeoutTo:'end_teo_naming',
+    choices:[
+      {ct:'Make Him Say It', cx:'Hold the line until the name comes from him — given, not taken.', to:'end_teo_naming', maya:'connection'},
+      {ct:'Go Over His Head', cx:'The overpass, the timing, six months of silence — laid in front of someone who outranks his loyalty.', to:'end_teo_expose', maya:'truth'},
+    ]},
+
+  end_teo_naming:{ end:true, type:'teo_naming', label:'Ending — What He Owed Her', img:'teo_gate_return.png',
+    title:'What He Owed Her', maya:'connection',
+    text:'“Say his name, Teo.” Not a demand — an offer, the same one she’s made to a hundred strangers on a hundred ledges: I don’t hang up first. The silence stretches until it stops being silence and becomes a man deciding what kind of friend he still gets to be. Then he says it. One name, six months late, and neither of them writes it down. She doesn’t call anyone after. Doesn’t need to — she has a witness now, not a case file, and a man who finally set down what he’d carried alone from the overpass to this gate. “I should’ve told you in month one,” he says. “You told me tonight,” she says, and means it. Some doors only open to a voice, never to a knock.'},
+
+  end_teo_expose:{ end:true, type:'teo_expose', label:'Ending — The Chain of Custody', img:'end_expose.png',
+    title:'The Chain of Custody', maya:'truth',
+    text:'She thanks Teo and doesn’t tell him what comes next. Some conversations deserve to end as the last kind word, not the first casualty. She calls a name above his — rank enough to reopen a scene report, distance enough not to flinch at it — and hands over the overpass, the timing, six months of a colleague’s silence, in the flat voice she saves for hostage lines. It will cost Teo his career, maybe more; she dials anyway. A career built on believing whoever reaches the scene first owns the truth, spent in one phone call. She sits at the gate, badge still warm in her pocket, and understands that in twelve years of ledges, the only person she ever pushed was a friend.'},
 
   stay_box_1:{ img:'phone_archive.png', slug:'INT. GATE B22 · THE THINGS SHE KEPT',
     line:'One shoebox, still taped. She has moved apartments around it — six months of choosing the closet door over the lid.',
