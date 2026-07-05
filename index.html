@@ -177,6 +177,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
     <h1>LAST&nbsp;CALL</h1>
     <div class="tag">A choice. A consequence. A life that isn’t yours anymore.</div>
     <button class="btn" onclick="startGame()">Begin</button>
+    <button class="btn ghost" onclick="skipToChoice()" style="margin-top:14px;opacity:0.6">TEMP — Skip to choice</button>
     <div id="returnNote" style="margin-top:22px;font-size:10px;letter-spacing:0.12em;color:var(--maya-cold);text-transform:uppercase;opacity:0"></div>
   </div>
 
@@ -686,6 +687,15 @@ function startGame(){
   document.getElementById('title').classList.add('hide');
   renderMayas(true);
   setTimeout(()=>go('neg1'), 700);
+}
+/* TEMP DEV SHORTCUT — remove before shipping. Jumps straight to the trunk's
+   end-card choice (c1: Board/Stay/Call Back) so branch content can be
+   re-tested without replaying the whole trunk each time. */
+function skipToChoice(){
+  pathCodes=[];
+  document.getElementById('title').classList.add('hide');
+  renderMayas(true);
+  setTimeout(()=>go('c1'), 200);
 }
 function replay(){
   document.getElementById('ending').classList.add('hide');
