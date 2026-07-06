@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 021</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 022</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -346,15 +346,22 @@ const STORY = {
     action:'Wheels down at 6:40. Her hand goes to her coat pocket before she’s decided to let it — an old habit that lands you safe, you tell him. The screen stays dark; there’s no one left on the other end of that reflex. A liaison officer says her name at the jet bridge like a fact he was sent to verify. Blue light the whole M4 in, and neither of them wastes it on talk.', next:'board_5'},
   board_5:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · 7:26 AM',
     line:'Eleven years and the tower hasn’t moved. She touches the ring once and gets out of the car.',
-    action:'Superintendent Hale briefs in bullet points: petrol on every soft surface, a lighter, no demands but her, deadline nine a.m. Breach is off the table — one spark does his job for him. Talking is the only tool anyone has.', next:'c_board_1'},
+    action:'Superintendent Hale briefs in bullet points: petrol on every soft surface, a lighter, no demands but her, deadline nine a.m. Breach is off the table — one spark does his job for him. Talking is the only tool anyone has.', next:'board_reveal'},
+
+  board_reveal:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
+    line:'“One more thing.” Hale closes the file and doesn’t move. “Your name didn’t come from Callum.”',
+    action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original case. IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. At the bottom: DANIEL REYES.', next:'board_reveal_2'},
+  board_reveal_2:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · THE WORD THAT COSTS',
+    line:'“You knew about this?” — “No.” For the first time tonight, the word costs her something.',
+    action:'She looks up at Cranmer House. In her pocket, his message: DON’T GET ON. And now she is standing exactly where getting on brought her.', next:'c_board_1'},
 
   c_board_1:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
     line:'Hale wants her in the truck — coached, recorded, deniable. Callum’s one demand is her voice at the door, nothing between them but the wood that lied last time.',
-    action:'She has used distance on grief before. It worked, in the sense that six months later she is still standing. Tonight it has a different job.',
+    action:'',
     timer:16, timeoutTo:'bd_truck_1',
     choices:[
-      {ct:'The Truck', cx:'Run it by the book. Distance is discipline — it’s what they flew her here for.', to:'bd_truck_1', maya:'control'},
-      {ct:'The Door', cx:'Stand where she stood. Give him the only thing he actually asked for.', to:'bd_door_1', maya:'connection'},
+      {ct:'The Truck', cx:'Trust the work.', to:'bd_truck_1', maya:'control'},
+      {ct:'The Door', cx:'Trust him.', to:'bd_door_1', maya:'connection'},
     ]},
 
   /* — truck path: control tries first, and he takes it apart — */
