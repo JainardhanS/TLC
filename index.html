@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 020</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 021</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -337,20 +337,20 @@ const STORY = {
     action:'The cabin door thunks shut behind her. In her coat, his phone is dark again. It said its piece.', next:'board_2'},
   board_2:{ img:'board_seated.png', slug:'INT. CABIN · 14A · WHEELS UP',
     line:'Tasking order, four lines, read eleven times before wheels-up: Cranmer House. Flat 74. Subject requests Reyes, by name.',
-    action:'Nineteen years, and exactly one address has ever asked for her by name before boarding. She signed for this assignment inside the hour — flying back to stand in a doorway she left eleven years ago, and she said yes anyway.', next:'board_3'},
+    action:'Nineteen years, and exactly one address has ever asked for her by name before boarding. She signs inside the hour, the ring catching light on the downstroke of her own name — the last time she signed anything this fast, it wasn’t hers to sign either. She flies back to stand in a doorway she left eleven years ago, and says yes anyway.', next:'board_3'},
   board_3:{ img:'board_face.png', slug:'INT. CABIN · OVER THE ATLANTIC · 3:12 AM',
     line:'Six hours to think about a door she’s thought about every day for eleven years. She spends every one of them not doing that.',
     action:'Ops updates come twice an hour, clipped and procedural — petrol confirmed, two occupants beyond the subject, deadline nine a.m. Nothing about Callum she didn’t already carry onto this plane. Composure is a discipline, not a feeling; she keeps hers exactly as trained, until Heathrow’s lights rise under the wing and her thumb finds the ring without asking permission first.', next:'board_4'},
   board_4:{ img:'bd_descent.png', slug:'INT. CABIN · DESCENT INTO HEATHROW · DAWN',
     line:'London surfaces grey through the cloud — a city that files its disasters and reissues the flats.',
-    action:'Wheels down at 6:40. A liaison officer says her name at the jet bridge like a fact he was sent to verify. Blue light the whole M4 in, and neither of them wastes it on talk.', next:'board_5'},
+    action:'Wheels down at 6:40. Her hand goes to her coat pocket before she’s decided to let it — an old habit that lands you safe, you tell him. The screen stays dark; there’s no one left on the other end of that reflex. A liaison officer says her name at the jet bridge like a fact he was sent to verify. Blue light the whole M4 in, and neither of them wastes it on talk.', next:'board_5'},
   board_5:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · 7:26 AM',
     line:'Eleven years and the tower hasn’t moved. She touches the ring once and gets out of the car.',
     action:'Superintendent Hale briefs in bullet points: petrol on every soft surface, a lighter, no demands but her, deadline nine a.m. Breach is off the table — one spark does his job for him. Talking is the only tool anyone has.', next:'c_board_1'},
 
   c_board_1:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
     line:'Hale wants her in the truck — coached, recorded, deniable. Callum’s one demand is her voice at the door, nothing between them but the wood that lied last time.',
-    action:'',
+    action:'She has used distance on grief before. It worked, in the sense that six months later she is still standing. Tonight it has a different job.',
     timer:16, timeoutTo:'bd_truck_1',
     choices:[
       {ct:'The Truck', cx:'Run it by the book. Distance is discipline — it’s what they flew her here for.', to:'bd_truck_1', maya:'control'},
@@ -366,12 +366,12 @@ const STORY = {
     action:'Down the line, a snick — the lighter cap. Then flint, struck once, close to the phone, so she can hear exactly how thin the morning is. “The door. Ten minutes. Or I stop asking.”', next:'bd_truck_3'},
   bd_truck_3:{ img:'bd_cordon.png', slug:'EXT. THE CORDON · WALKING',
     line:'Nineteen years of technique, spent in one sentence — because he heard it the first time, standing in his mother’s blood.',
-    action:'She is out of the truck before Hale finishes forbidding it. Control was never going to climb four floors.', next:'bd_door_2'},
+    action:'She is out of the truck before Hale finishes forbidding it, her thumb finding the inside of her wrist on the first landing — a habit that was never hers to begin with. Control was never going to climb four floors.', next:'bd_door_2'},
 
   /* — door path: she goes straight to where she stood — */
   bd_door_1:{ img:'bd_stairwell.png', slug:'INT. CRANMER HOUSE · STAIRWELL',
     line:'Hale calls it against protocol. She agrees with him and keeps climbing.',
-    action:'Four flights of bleach and rain. The cordon noise drops away floor by floor, until the loudest thing in the building is what she’s about to say.', next:'bd_door_2'},
+    action:'Four flights of bleach and rain, her thumb finding her wrist on the second landing — a habit that was never hers. The cordon noise drops away floor by floor, until the loudest thing in the building is what she’s about to say.', next:'bd_door_2'},
 
   /* — convergence: the door — */
   bd_door_2:{ img:'bd_door74.png', slug:'FLAT 74 · THE DOOR',
@@ -382,10 +382,10 @@ const STORY = {
     action:'A phone taps the door from the inside. “It’s live, Maya. Say what your sealed file says. What they did. What you let them do. Or at nine o’clock this flat finishes the job.”', next:'bd_door_4'},
   bd_door_4:{ img:'bd_door74.png', slug:'FLAT 74 · TWO NEGOTIATIONS',
     line:'In her ear, the radio: legal says the gag order holds, give him nothing, buy time. Through the door, a boy who can smell time being bought.',
-    action:'She is negotiating in both directions now — a breach team that thinks he’s bluffing, and a boy who has spent eleven years proving he isn’t. The child coughs again. Smaller.', next:'bd_door_5'},
+    action:'She is negotiating in both directions now — a breach team that thinks he’s bluffing, a boy who has spent eleven years proving he isn’t, and underneath both, the one negotiation she has been losing for six months without ever once walking into the room. The child coughs again. Smaller.', next:'bd_door_5'},
   bd_door_5:{ img:'bd_door74.png', slug:'FLAT 74 · THE READ',
     line:'She listens the way other people aim. The lighter is in his left hand, low — she can hear it in how his sentences lean.',
-    action:'He hasn’t decided. Deciders don’t livestream; they don’t ask for witnesses. What he wants isn’t fire — it’s one person with something to lose telling the truth on the record. She has exactly one of those to offer.', next:'c_board_final'},
+    action:'He hasn’t decided. Deciders don’t livestream; they don’t ask for witnesses. She learned to hear the difference on a rooftop, years before she learned it in a marriage — the second lesson cost more and taught her less. What he wants isn’t fire — it’s one person with something to lose telling the truth on the record. She has exactly one of those to offer.', next:'c_board_final'},
 
   c_board_final:{ img:'bd_door74.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
     line:'Three minutes. One door, two children breathing behind it — the one who is seven, and the one who has been twelve for eleven years.',
