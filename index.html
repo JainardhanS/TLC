@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 019</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 020</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -389,7 +389,7 @@ const STORY = {
 
   c_board_final:{ img:'bd_door74.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
     line:'Three minutes. One door, two children breathing behind it — the one who is seven, and the one who has been twelve for eleven years.',
-    action:'',
+    action:'In her coat, his phone is exactly as dark as it’s been for six months. She has spent that whole time not solving one silence. She is about to choose whether to solve someone else’s.',
     timer:20, timeoutTo:'board_end_script',
     choices:[
       {ct:'Say Her Name', cx:'Break the seal on his live channel — the name, the promise, her part in it. Whatever it costs after.', to:'board_end_name', maya:'truth'},
@@ -407,7 +407,7 @@ const STORY = {
 
   board_end_room:{ end:true, type:'reposition', label:'Ending — The Room', img:'bd_end_room.png',
     title:'The Room', maya:'connection',
-    text:'“Send them out, Callum. Keep me. You wanted someone with something to lose — I’m carrying more of that than anyone on this street.” The cardinal sin of her profession, offered in the flat voice she trusts most. The door opens six inches; Amara and her boy pour through it, and Maya steps into the room her promise died in. Petrol, dawn light, a wall she doesn’t look at. She sits on the floor and does the hardest technique she knows — nothing. No script, no frame, just a witness who stays. He talks for fifty minutes: the sofa, the silhouette, the sound command boots make on a landing. At 9:51 he caps the lighter and hands it over like something he’s been carrying for someone else. They walk out together into the blue lights. Her career ends in that doorway, and so does the rule about never making it personal. She landed believing distance was the skill. The skill was crossing the door.'},
+    text:'“Send them out, Callum. Keep me. You wanted someone with something to lose — I’m carrying more of that than anyone on this street.” The cardinal sin of her profession, offered in the flat voice she trusts most. The door opens six inches; Amara and her boy pour through it, and Maya steps into the room her promise died in. Petrol, dawn light, a wall she doesn’t look at. She sits on the floor and does the hardest technique she knows — nothing. No script, no frame, just a witness who stays. He talks for fifty minutes: the sofa, the silhouette, the sound command boots make on a landing. At 9:51 he caps the lighter and hands it over like something he’s been carrying for someone else. They walk out together into the blue lights. Her career ends in that doorway, and so does the rule about never making it personal. She landed believing distance was the skill. The skill was crossing the door. In her coat, his phone stays exactly where it’s been for six months. She doesn’t take it out. For the first time, that doesn’t feel like avoidance. It feels like patience.'},
 
   /* ================= BRANCH B — STAY (Doubt) — the interception: Nadia's exit was timed
      for Maya to be over the Atlantic. She stayed. 100 minutes exist that never should have. ================= */
@@ -478,10 +478,10 @@ const STORY = {
     ]},
 
   /* — play it: the accusation — */
-  st_play_1:{ img:'st_nadia_face.png', slug:'THE WINE BAR · THE ACCUSATION',
+  st_play_1:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · THE ACCUSATION',
     line:'“The night he died, someone stood at the tape line before it was called in. A woman. Back to the wreck.” Flat, no verb pointed at anyone. Then she reads the half-second.',
     action:'The half-second holds no flinch where liars flinch, no outrage where the innocent keep theirs. It holds something worse: relief. “So somebody finally says it out loud,” Nadia breathes. “It was me.”', next:'st_play_2'},
-  st_play_2:{ img:'st_nadia_face.png', slug:'THE WINE BAR · THE TRUE ONE',
+  st_play_2:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · THE TRUE ONE',
     line:'“Eleven days I’d been following him, because he was frightened and wouldn’t say why. You want my reason — I only have the true one: I was afraid for him. Notice it’s also exactly what I’d say if I were what you’re afraid I am.”',
     action:'Nineteen years of reads, and this one returns clean and unreadable — not a wall; a window with two views. She spends her last card anyway: “London. Did you ask for me by name?” — “No.” It lands the same way. True-shaped. Both directions.', next:'st_final_1'},
 
@@ -489,7 +489,7 @@ const STORY = {
   st_hold_1:{ img:'st_nadia_face.png', slug:'THE WINE BAR · THE SHEATHED BLADE',
     line:'She folds the tape line away unplayed and asks about the weather in São Paulo. Interrogation is pressure. This is the other craft: gravity.',
     action:'She offers small true things — his unforgivable parking, how he read a menu twice and ordered the first thing anyway. Nadia laughs once, real, then stops like the laugh cost money. “Before they call my row — better you hear it from me than from whoever’s been calling you all night.”', next:'st_hold_2'},
-  st_hold_2:{ img:'st_nadia_face.png', slug:'THE WINE BAR · GIVEN, NOT TAKEN',
+  st_hold_2:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · GIVEN, NOT TAKEN',
     line:'“I was on Route 9W that night. At the tape, before the sirens. Eleven days I’d been following him, because he was frightened and wouldn’t say why. That’s the whole confession, and I know exactly how it sounds.”',
     action:'Given, not taken — worth everything, provable never. The read returns the way the deep ones do when it matters most: true-shaped in both directions. “London,” Maya says. “Did you ask for me by name?” — “No.” Same shape. Both views.', next:'st_final_1'},
 
