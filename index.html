@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 023</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 024</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -351,11 +351,11 @@ const STORY = {
   board_reveal:{ img:'bd_document.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
     line:'“One more thing.” Hale closes the file and doesn’t move. “Your name didn’t come from Callum.”',
     action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original case, signature checked against his service record before anyone let her see it. IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. At the bottom: DANIEL REYES.', next:'board_reveal_2'},
-  board_reveal_2:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · THE WORD THAT COSTS',
+  board_reveal_2:{ img:'bd_reveal_face.png', slug:'EXT. CRANMER HOUSE · THE WORD THAT COSTS',
     line:'“You knew about this?” — “No.” For the first time tonight, the word costs her something.',
     action:'She looks up at Cranmer House. In her pocket, his message: DON’T GET ON. And now she is standing exactly where getting on brought her.', next:'c_board_1'},
 
-  c_board_1:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
+  c_board_1:{ img:'bd_command_turn.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
     line:'Hale wants her in the truck — coached, recorded, deniable. Callum’s one demand is her voice at the door, nothing between them but the wood that lied last time.',
     action:'',
     timer:16, timeoutTo:'bd_truck_1',
@@ -371,7 +371,7 @@ const STORY = {
   bd_truck_2:{ img:'bd_truck.png', slug:'INT. COMMAND TRUCK · MADE',
     line:'“‘My name is.’ That’s the opener you used on her. I was twelve, Maya. I memorised you.”',
     action:'Down the line, a snick — the lighter cap. Then flint, struck once, close to the phone, so she can hear exactly how thin the morning is. “The door. Ten minutes. Or I stop asking.”', next:'bd_truck_3'},
-  bd_truck_3:{ img:'bd_cordon.png', slug:'EXT. THE CORDON · WALKING',
+  bd_truck_3:{ img:'bd_cordon_walk.png', slug:'EXT. THE CORDON · WALKING',
     line:'Nineteen years of technique, spent in one sentence — because he heard it the first time, standing in his mother’s blood.',
     action:'She is out of the truck before Hale finishes forbidding it, her thumb finding the inside of her wrist on the first landing — a habit that was never hers to begin with. Control was never going to climb four floors.', next:'bd_door_2'},
 
@@ -384,17 +384,17 @@ const STORY = {
   bd_door_2:{ img:'bd_door74.png', slug:'FLAT 74 · THE DOOR',
     line:'Same door. Council green over council green. The landing smells of petrol, sweet and patient.',
     action:'“Callum. It’s Maya. No headset, no truck — just me.” Inside, a child coughs against the fumes. Below, boots reposition on concrete and wait to be wrong.', next:'bd_door_3'},
-  bd_door_3:{ img:'bd_door74.png', slug:'FLAT 74 · HIS TERMS',
+  bd_door_3:{ img:'bd_door_terms.png', slug:'FLAT 74 · HIS TERMS',
     line:'“I don’t want them,” he says through the wood — and she believes him. Men who want their hostages never let you hear them cough.',
     action:'A phone taps the door from the inside. “It’s live, Maya. Say what your sealed file says. What they did. What you let them do. Or at nine o’clock this flat finishes the job.”', next:'bd_door_4'},
-  bd_door_4:{ img:'bd_door74.png', slug:'FLAT 74 · TWO NEGOTIATIONS',
+  bd_door_4:{ img:'bd_door_profile.png', slug:'FLAT 74 · TWO NEGOTIATIONS',
     line:'In her ear, the radio: legal says the gag order holds, give him nothing, buy time. Through the door, a boy who can smell time being bought.',
     action:'She is negotiating in both directions now — a breach team that thinks he’s bluffing, a boy who has spent eleven years proving he isn’t, and underneath both, the one negotiation she has been losing for six months without ever once walking into the room. The child coughs again. Smaller.', next:'bd_door_5'},
-  bd_door_5:{ img:'bd_door74.png', slug:'FLAT 74 · THE READ',
+  bd_door_5:{ img:'bd_door_listen.png', slug:'FLAT 74 · THE READ',
     line:'She listens the way other people aim. The lighter is in his left hand, low — she can hear it in how his sentences lean.',
     action:'He hasn’t decided. Deciders don’t livestream; they don’t ask for witnesses. She learned to hear the difference on a rooftop, years before she learned it in a marriage — the second lesson cost more and taught her less. What he wants isn’t fire — it’s one person with something to lose telling the truth on the record. She has exactly one of those to offer.', next:'c_board_final'},
 
-  c_board_final:{ img:'bd_door74.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
+  c_board_final:{ img:'bd_door_final.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
     line:'Three minutes. One door, two children breathing behind it — the one who is seven, and the one who has been twelve for eleven years.',
     action:'In her coat, his phone is exactly as dark as it’s been for six months. She has spent that whole time not solving one silence. She is about to choose whether to solve someone else’s.',
     timer:20, timeoutTo:'board_end_script',
@@ -431,7 +431,7 @@ const STORY = {
     line:'The screen interrupts: NADIA KOROLOVA. A name Daniel said like a colleague and saved like a friend.',
     action:'She answers with silence — old habit. Nadia doesn’t ask who’s there. “You didn’t board.” Not a question. And under her voice, half a beat late, the same PA announcement still hanging in the air over Maya’s head. Same ceiling. Same building.', next:'c2_stay'},
 
-  c2_stay:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · 12:05 AM', chapter:'Choice — the first move',
+  c2_stay:{ img:'st_phone_react.png', slug:'INT. GATE B22 · 12:05 AM', chapter:'Choice — the first move',
     line:'Nadia Korolova is under this roof and doesn’t know she just told her. In Maya’s trade that’s called the only advantage anyone gives you for free.',
     action:'',
     timer:16, timeoutTo:'st_hunt_1',
@@ -449,10 +449,10 @@ const STORY = {
     action:'Sixty seconds in shadow. Nadia isn’t crying and isn’t rehearsing. She’s watching the departures board — not her own flight. The London line. The one Maya isn’t on. Then, without turning: “You walk like him when you’re deciding something. Sit down, Maya.”', next:'st_meet_1'},
 
   /* — name-it path: the advantage, spent on purpose — */
-  st_name_1:{ img:'stay_nadia_call.png', slug:'INT. GATE B22 · THE ADVANTAGE, SPENT',
+  st_name_1:{ img:'st_phone_close.png', slug:'INT. GATE B22 · THE ADVANTAGE, SPENT',
     line:'“You’re in the terminal.” Four words, and she hears Nadia stop breathing — then start again, slower, like a decision being made.',
     action:'“Concourse B. The wine bar that’s closed.” A pause with weight in it. “I could have lied just now,” Nadia says. “So could I,” says Maya. In both their trades, that is how you say thank you.', next:'st_name_2'},
-  st_name_2:{ img:'st_winebar.png', slug:'THE WINE BAR · 12:14 AM',
+  st_name_2:{ img:'st_winebar_approach.png', slug:'THE WINE BAR · 12:14 AM',
     line:'Two suitcases packed for a life, not a trip. A boarding pass creased like a decision made months ago.',
     action:'Nadia stands to meet her — no embrace, no distance, the exact professional middle. Up close, the last six months have happened to her too. “You came straight here,” she says. “No angles. He always said you’d be the last honest one in any room.”', next:'st_meet_1'},
 
@@ -460,10 +460,10 @@ const STORY = {
   st_meet_1:{ img:'st_nadia_face.png', slug:'THE WINE BAR · HER TERMS',
     line:'“The 1:55 to São Paulo, one way. When they call my row I stand up, and you let me. Until then — ask me anything.”',
     action:'A deadline. Nineteen years on hostage lines and the deadline was always the other side’s move — she knows exactly what deadlines are for: making people trade like they’re drowning. A hundred minutes on the board. She sits down slowly, like the room is wired, and does not trade like she’s drowning.', next:'st_meet_2'},
-  st_meet_2:{ img:'st_nadia_face.png', slug:'THE WINE BAR · THE READ',
+  st_meet_2:{ img:'st_nadia_read.png', slug:'THE WINE BAR · THE READ',
     line:'“Why São Paulo?” — “Because Daniel hates a city he can’t walk.” Present tense. Uncorrected. Grief’s oldest tell — or the oldest trick in the book.',
     action:'She opens a silence, the working kind, the one strangers fall into. Nadia watches it stretch and smiles like a bruise: “You went quiet so I’d fill it. He told me you do that.” Six months she has been the widow. She hadn’t priced in being the wife somebody else was taught.', next:'st_meet_3'},
-  st_meet_3:{ img:'st_nadia_face.png', slug:'THE WINE BAR · WHAT SHE VOLUNTEERS',
+  st_meet_3:{ img:'st_nadia_rise.png', slug:'THE WINE BAR · WHAT SHE VOLUNTEERS',
     line:'“He was frightened the last year, and not of me — you’ll have to decide that part yourself. I’m leaving because I’d rather be paranoid in another hemisphere than right in this one.”',
     action:'Every sentence lands on the same knife-edge: exactly what a terrified friend would say, exactly what a careful liar would choose. Her hands are still. Too still. Overhead: “Flight 803 to São Paulo, now boarding Group One.” Nadia rises. “Two minutes. Don’t follow me to the ladies’ — it’s beneath us both.”', next:'st_teo_1'},
 
@@ -475,7 +475,7 @@ const STORY = {
     line:'“There’s worse. Someone stood at the tape line before any of us called it in. Back to the wreck, not looking. Maya — it was a woman.”',
     action:'Forty meters out, Nadia is walking back, coat over one arm, face already arranged. Maya does the arithmetic she hates herself for: height, build, the particular stillness of someone who cannot look at the thing they came to see.', next:'c3_stay'},
 
-  c3_stay:{ img:'st_winebar.png', slug:'THE WINE BAR · 1:15 AM', chapter:'Choice — the blade',
+  c3_stay:{ img:'st_winebar_tense.png', slug:'THE WINE BAR · 1:15 AM', chapter:'Choice — the blade',
     line:'A woman at the tape line, hours before the world knew — in her pocket now, and Nadia doesn’t know she’s carrying it. Twenty-five minutes to the gate.',
     action:'',
     timer:16, timeoutTo:'st_hold_1',
@@ -488,15 +488,15 @@ const STORY = {
   st_play_1:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · THE ACCUSATION',
     line:'“The night he died, someone stood at the tape line before it was called in. A woman. Back to the wreck.” Flat, no verb pointed at anyone. Then she reads the half-second.',
     action:'The half-second holds no flinch where liars flinch, no outrage where the innocent keep theirs. It holds something worse: relief. “So somebody finally says it out loud,” Nadia breathes. “It was me.”', next:'st_play_2'},
-  st_play_2:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · THE TRUE ONE',
+  st_play_2:{ img:'st_nadia_open.png', slug:'THE WINE BAR · THE TRUE ONE',
     line:'“Eleven days I’d been following him, because he was frightened and wouldn’t say why. You want my reason — I only have the true one: I was afraid for him. Notice it’s also exactly what I’d say if I were what you’re afraid I am.”',
     action:'Nineteen years of reads, and this one returns clean and unreadable — not a wall; a window with two views. She spends her last card anyway: “London. Did you ask for me by name?” — “No.” It lands the same way. True-shaped. Both directions.', next:'st_final_1'},
 
   /* — hold it: the other craft — */
-  st_hold_1:{ img:'st_nadia_face.png', slug:'THE WINE BAR · THE SHEATHED BLADE',
+  st_hold_1:{ img:'st_nadia_laugh.png', slug:'THE WINE BAR · THE SHEATHED BLADE',
     line:'She folds the tape line away unplayed and asks about the weather in São Paulo. Interrogation is pressure. This is the other craft: gravity.',
     action:'She offers small true things — his unforgivable parking, how he read a menu twice and ordered the first thing anyway. Nadia laughs once, real, then stops like the laugh cost money. “Before they call my row — better you hear it from me than from whoever’s been calling you all night.”', next:'st_hold_2'},
-  st_hold_2:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · GIVEN, NOT TAKEN',
+  st_hold_2:{ img:'st_nadia_stillhands.png', slug:'THE WINE BAR · GIVEN, NOT TAKEN',
     line:'“I was on Route 9W that night. At the tape, before the sirens. Eleven days I’d been following him, because he was frightened and wouldn’t say why. That’s the whole confession, and I know exactly how it sounds.”',
     action:'Given, not taken — worth everything, provable never. The read returns the way the deep ones do when it matters most: true-shaped in both directions. “London,” Maya says. “Did you ask for me by name?” — “No.” Same shape. Both views.', next:'st_final_1'},
 
@@ -569,7 +569,7 @@ const STORY = {
   cb_script_1:{ img:'cb_kitchen_dark.png', slug:'THE KITCHEN · HIS SIDE OF THE LINE',
     line:'She goes in armored: dispatcher cadence, closed questions, one instruction at a time. It works. It always works at first.',
     action:'Is the front door locked. Is the stove off. Put your hand under her nose — do you feel wind on it. “Yes.” Good — that’s good. He performs like a soldier of seven, because a calm adult voice is the only railing in the dark and he is holding it with both hands.', next:'cb_script_2'},
-  cb_script_2:{ img:'cb_kitchen_dark.png', slug:'THE KITCHEN · A SIREN, PASSING',
+  cb_script_2:{ img:'cb_kitchen_hide.png', slug:'THE KITCHEN · A SIREN, PASSING',
     line:'A siren blooms against his window — and keeps going. Somebody else’s emergency, somebody else’s kitchen. Help passing by is worse than no help at all.',
     action:'He stops answering. Not crying — gone. She can hear the tablecloth he’s hiding under. The script has pages for jumpers, barricades, a man with a deadline and a grievance. It has nothing for a child going quiet. Procedure got her here, and procedure is out of pages.', next:'cb_script_3'},
   cb_script_3:{ img:'maya_eyes.png', slug:'INT. GATE B22 · OFF SCRIPT',
@@ -592,7 +592,7 @@ const STORY = {
     line:'Two units crawl the corridor with sirens up, and she plays them against his ears. Louder or quieter, Jonah. Louder or quieter.',
     action:'“Louder — louder — it’s OUTSIDE—” Then the wall she has been bracing for: locked lobby, dead buzzer, a fire escape on the wrong face of the building. Three floors of stairwell between help and the kitchen. His mother’s breaths arrive like they’re being carried from further and further away. The battery’s red line has started to blink.', next:'c_call_final'},
 
-  c_call_final:{ img:'cb_kitchen_dark.png', slug:'THE KITCHEN · ONE RED LINE', chapter:'The last choice',
+  c_call_final:{ img:'cb_battery_red.png', slug:'THE KITCHEN · ONE RED LINE', chapter:'The last choice',
     line:'The top lock needs a chair and both of his hands. The phone doesn’t make that trip. To let them in, he has to put her down.',
     action:'',
     timer:20, timeoutTo:'end_call_kept',
