@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--mo
   <div class="timerbar"><div class="timerfill" id="timerfill"></div></div>
   <div class="hud">
     <div class="slug" id="slug">INT. JFK T4 · GATE B22 · 11:47 PM</div>
-    <div class="meta" id="meta" style="opacity:0.35">build 024</div>
+    <div class="meta" id="meta" style="opacity:0.35">build 025.1</div>
   </div>
   <div class="mayas" id="mayas"></div>
   <div class="echo" id="echo"></div>
@@ -346,17 +346,63 @@ const STORY = {
     action:'Wheels down at 6:40. Her hand goes to her coat pocket before she’s decided to let it — an old habit that lands you safe, you tell him. The screen stays dark; there’s no one left on the other end of that reflex. A liaison officer says her name at the jet bridge like a fact he was sent to verify. Blue light the whole M4 in, and neither of them wastes it on talk.', next:'board_5'},
   board_5:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · 7:26 AM',
     line:'Eleven years and the tower hasn’t moved. She touches the ring once and gets out of the car.',
-    action:'Superintendent Hale briefs in bullet points: petrol on every soft surface, a lighter, no demands but her, deadline nine a.m. Breach is off the table — one spark does his job for him. Talking is the only tool anyone has.', next:'board_reveal'},
+    action:'Hale is already at the tape, talking fast — petrol, one lighter, no demands but her, deadline nine a.m. Breach is off the table; one spark does his job for him.', next:'c_board_2'},
 
-  board_reveal:{ img:'bd_document.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
+  /* NEW — fixes the inert middle: a real tactical decision before Hale finishes talking */
+  c_board_2:{ img:'bd_cordon.png', slug:'EXT. CRANMER HOUSE · THE TAPE LINE', chapter:'Choice — ninety seconds',
+    line:'Hale wants her at his shoulder for the full brief. Four floors up, a curtain moves and doesn’t move back.',
+    action:'',
+    timer:14, timeoutTo:'board_scout_brief',
+    choices:[
+      {ct:'The Alley', cx:'Duck the tape. Get eyes on that window before anyone tells her not to.', to:'board_scout_alley', maya:'truth'},
+      {ct:'The Brief', cx:'Stay at his shoulder. Take the floor plan, the exits, the whole picture first.', to:'board_scout_brief', maya:'control'},
+    ]},
+
+  board_scout_alley:{ img:'bd_scout_alley.png', slug:'EXT. CRANMER HOUSE · THE ALLEY',
+    line:'She’s over the tape before the constable finishes saying her name.',
+    action:'Four floors up, a gap in the curtain — a flicker, low, orange, gone. She has a location for the lighter no briefing gave her, and a look from Hale that says she’ll hear about this later.', next:'board_reveal_alley'},
+
+  board_scout_brief:{ img:'bd_scout_brief.png', slug:'EXT. CRANMER HOUSE · THE COMMAND TENT',
+    line:'She stays at Hale’s shoulder and lets the picture build before she moves an inch.',
+    action:'Floor plan, exits, a marksman already in position two rooftops back — everything Command knows, in under a minute. Instinct can wait its turn.', next:'board_reveal_brief'},
+
+  /* — scar thread A: unauthorized alley move costs her Hale's patience downstream — */
+  board_reveal_alley:{ img:'bd_document.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
     line:'“One more thing.” Hale closes the file and doesn’t move. “Your name didn’t come from Callum.”',
-    action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original case, signature checked against his service record before anyone let her see it. IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. At the bottom: DANIEL REYES.', next:'board_reveal_2'},
-  board_reveal_2:{ img:'bd_reveal_face.png', slug:'EXT. CRANMER HOUSE · THE WORD THAT COSTS',
-    line:'“You knew about this?” — “No.” For the first time tonight, the word costs her something.',
-    action:'She looks up at Cranmer House. In her pocket, his message: DON’T GET ON. And now she is standing exactly where getting on brought her.', next:'c_board_1'},
+    action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original Doyle case, the one that cost Mairead her life and put Callum in care at twelve. A standing instruction, not a warning about tonight: IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. Signature checked against his service record before anyone let her see it. At the bottom: DANIEL REYES.', next:'board_reveal_2_alley'},
 
-  c_board_1:{ img:'bd_command_turn.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
-    line:'Hale wants her in the truck — coached, recorded, deniable. Callum’s one demand is her voice at the door, nothing between them but the wood that lied last time.',
+  /* — post-Counted contaminated twin: same reveal, recolored by what she's since heard on the line — */
+  board_reveal_alley_contaminated:{ img:'bd_document.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
+    line:'“One more thing.” Hale closes the file and doesn’t move. “Your name didn’t come from Callum.”',
+    action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original Doyle case, the one that cost Mairead her life and put Callum in care at twelve. A standing instruction, not a warning about tonight: IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. Signature checked against his service record before anyone let her see it. At the bottom: DANIEL REYES. She knows now what she didn’t the first time she stood here — that a phone can ring, and someone can let it, and still be listening on the other end. She can’t prove he touched this file since. She also can’t prove he didn’t.', next:'board_reveal_2_alley'},
+  board_reveal_2_alley:{ img:'bd_reveal_face.png', slug:'EXT. CRANMER HOUSE · THE WORD THAT COSTS',
+    line:'“You knew about this?” — “No.” For the first time tonight, the word costs her something.',
+    action:'She looks up at Cranmer House. In her pocket, his message: DON’T GET ON. And now she is standing exactly where getting on brought her.', next:'c_board_1_alley'},
+
+  /* — scar thread B: staying at Hale's shoulder banks trust she gets to spend here — */
+  board_reveal_brief:{ img:'bd_document.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
+    line:'“One more thing.” Hale closes the file and doesn’t move. “Your name didn’t come from Callum.”',
+    action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original Doyle case, the one that cost Mairead her life and put Callum in care at twelve. A standing instruction, not a warning about tonight: IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. Signature checked against his service record before anyone let her see it. At the bottom: DANIEL REYES.', next:'board_reveal_2_brief'},
+
+  /* — post-Counted contaminated twin: same reveal, recolored by what she's since heard on the line — */
+  board_reveal_brief_contaminated:{ img:'bd_document.png', slug:'EXT. CRANMER HOUSE · ONE MORE THING',
+    line:'“One more thing.” Hale closes the file and doesn’t move. “Your name didn’t come from Callum.”',
+    action:'An old document from the back of the file — creased, scanned twice, years old, attached to the original Doyle case, the one that cost Mairead her life and put Callum in care at twelve. A standing instruction, not a warning about tonight: IF THIS FAMILY BECOMES ACTIVE AGAIN, REQUEST DET. MAYA REYES. Signature checked against his service record before anyone let her see it. At the bottom: DANIEL REYES. She knows now what she didn’t the first time she stood here — that a phone can ring, and someone can let it, and still be listening on the other end. She can’t prove he touched this file since. She also can’t prove he didn’t.', next:'board_reveal_2_brief'},
+  board_reveal_2_brief:{ img:'bd_reveal_face.png', slug:'EXT. CRANMER HOUSE · THE WORD THAT COSTS',
+    line:'“You knew about this?” — “No.” For the first time tonight, the word costs her something.',
+    action:'She looks up at Cranmer House. In her pocket, his message: DON’T GET ON. And now she is standing exactly where getting on brought her.', next:'c_board_1_brief'},
+
+  c_board_1_alley:{ img:'bd_command_turn.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
+    line:'Hale hasn’t forgotten the alley — there’s an edge in his voice that wasn’t there an hour ago. He wants her in the truck now, coached, recorded, where he can see exactly what she does next. Callum’s one demand is still her voice at the door.',
+    action:'',
+    timer:12, timeoutTo:'bd_truck_1',
+    choices:[
+      {ct:'The Truck', cx:'Trust the work.', to:'bd_truck_1', maya:'control'},
+      {ct:'The Door', cx:'Trust him.', to:'bd_door_1', maya:'connection'},
+    ]},
+
+  c_board_1_brief:{ img:'bd_command_turn.png', slug:'EXT. CRANMER HOUSE · COMMAND LINE', chapter:'Choice — where does her voice live?',
+    line:'Hale wants her in the truck — coached, recorded, deniable, same as he’d ask anyone who’d earned the same trust she has this morning. Callum’s one demand is her voice at the door, nothing between them but the wood that lied last time.',
     action:'',
     timer:16, timeoutTo:'bd_truck_1',
     choices:[
@@ -373,48 +419,89 @@ const STORY = {
     action:'Down the line, a snick — the lighter cap. Then flint, struck once, close to the phone, so she can hear exactly how thin the morning is. “The door. Ten minutes. Or I stop asking.”', next:'bd_truck_3'},
   bd_truck_3:{ img:'bd_cordon_walk.png', slug:'EXT. THE CORDON · WALKING',
     line:'Nineteen years of technique, spent in one sentence — because he heard it the first time, standing in his mother’s blood.',
-    action:'She is out of the truck before Hale finishes forbidding it, her thumb finding the inside of her wrist on the first landing — a habit that was never hers to begin with. Control was never going to climb four floors.', next:'bd_door_2'},
+    action:'She is out of the truck before Hale finishes forbidding it, her thumb finding the inside of her wrist on the first landing — a habit that was never hers to begin with. Control was never going to climb four floors.', next:'bd_door_2t'},
 
   /* — door path: she goes straight to where she stood — */
   bd_door_1:{ img:'bd_stairwell.png', slug:'INT. CRANMER HOUSE · STAIRWELL',
     line:'Hale calls it against protocol. She agrees with him and keeps climbing.',
-    action:'Four flights of bleach and rain, her thumb finding her wrist on the second landing — a habit that was never hers. The cordon noise drops away floor by floor, until the loudest thing in the building is what she’s about to say.', next:'bd_door_2'},
+    action:'Four flights of bleach and rain, her thumb finding her wrist on the second landing — a habit that was never hers. A resident pushes past going the other way, coughing, and she reads his face for how bad it is up there before he’s gone.', next:'bd_door_2d'},
 
-  /* — convergence: the door — */
-  bd_door_2:{ img:'bd_door74.png', slug:'FLAT 74 · THE DOOR',
-    line:'Same door. Council green over council green. The landing smells of petrol, sweet and patient.',
-    action:'“Callum. It’s Maya. No headset, no truck — just me.” Inside, a child coughs against the fumes. Below, boots reposition on concrete and wait to be wrong.', next:'bd_door_3'},
-  bd_door_3:{ img:'bd_door_terms.png', slug:'FLAT 74 · HIS TERMS',
-    line:'“I don’t want them,” he says through the wood — and she believes him. Men who want their hostages never let you hear them cough.',
-    action:'A phone taps the door from the inside. “It’s live, Maya. Say what your sealed file says. What they did. What you let them do. Or at nine o’clock this flat finishes the job.”', next:'bd_door_4'},
-  bd_door_4:{ img:'bd_door_profile.png', slug:'FLAT 74 · TWO NEGOTIATIONS',
-    line:'In her ear, the radio: legal says the gag order holds, give him nothing, buy time. Through the door, a boy who can smell time being bought.',
-    action:'She is negotiating in both directions now — a breach team that thinks he’s bluffing, a boy who has spent eleven years proving he isn’t, and underneath both, the one negotiation she has been losing for six months without ever once walking into the room. The child coughs again. Smaller.', next:'bd_door_5'},
-  bd_door_5:{ img:'bd_door_listen.png', slug:'FLAT 74 · THE READ',
+  /* ============ TRUCK-INFORMED DOOR THREAD — she arrives already made ============ */
+  bd_door_2t:{ img:'bd_door74.png', slug:'FLAT 74 · THE DOOR',
+    line:'Same door. Council green over council green. She already knows the one thing his voice couldn’t hide on the phone — how old he was the first time she stood here.',
+    action:'“Callum. It’s Maya. I remember the case. I don’t remember you — but I believe you.” Inside, a child coughs against the fumes. Below, boots reposition on concrete and wait to be wrong.', next:'bd_door_3t'},
+  bd_door_3t:{ img:'bd_door_terms.png', slug:'FLAT 74 · HIS TERMS',
+    line:'“You don’t remember me.” Something in his voice closes, like a door checked twice. “Good. Then you’ll listen instead of performing.”',
+    action:'A phone taps the door from inside. “It’s live, Maya. Say what your sealed file says. What they did. What you let them do. Or at nine o’clock this flat finishes the job.”', next:'bd_door_4t'},
+  bd_door_4t:{ img:'bd_door_profile.png', slug:'FLAT 74 · TWO NEGOTIATIONS',
+    line:'In her ear, the radio: legal says the gag order holds, give him nothing, buy time. Through the door, a boy who’s been rehearsing this morning since he was twelve.',
+    action:'She is negotiating in both directions now — a breach team that thinks he’s bluffing, a boy who has spent eleven years proving he isn’t, and underneath both, the negotiation she has been losing for six months without ever once walking into the room. The child coughs again. Smaller.', next:'bd_door_5t'},
+  bd_door_5t:{ img:'bd_door_listen.png', slug:'FLAT 74 · THE READ',
     line:'She listens the way other people aim. The lighter is in his left hand, low — she can hear it in how his sentences lean.',
-    action:'He hasn’t decided. Deciders don’t livestream; they don’t ask for witnesses. She learned to hear the difference on a rooftop, years before she learned it in a marriage — the second lesson cost more and taught her less. What he wants isn’t fire — it’s one person with something to lose telling the truth on the record. She has exactly one of those to offer.', next:'c_board_final'},
+    action:'He hasn’t decided. He wanted her to remember being twelve — and she can’t, and that failure is doing more work than any technique she brought in the truck. What he wants isn’t fire. It’s one person with something to lose, telling the truth on the record, to the boy she still can’t place.', next:'c_board_final_t'},
 
-  c_board_final:{ img:'bd_door_final.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
-    line:'Three minutes. One door, two children breathing behind it — the one who is seven, and the one who has been twelve for eleven years.',
-    action:'In her coat, his phone is exactly as dark as it’s been for six months. She has spent that whole time not solving one silence. She is about to choose whether to solve someone else’s.',
-    timer:20, timeoutTo:'board_end_script',
+  /* ============ DOOR-EXCLUSIVE THREAD — the token, unfiltered by truck/headset ============ */
+  bd_door_2d:{ img:'bd_door74.png', slug:'FLAT 74 · THE DOOR',
+    line:'Same door. Council green over council green. The landing smells of petrol, sweet and patient.',
+    action:'“Callum. It’s Maya. No headset, no truck — just me.” Nothing for four seconds. Then, low, not into a phone: “I know. I watched you climb.” Inside, a child coughs against the fumes.', next:'bd_door_3d'},
+  bd_door_3d:{ img:'bd_door_terms.png', slug:'FLAT 74 · THE THING HE KEPT',
+    line:'Paper slides under the door — the corner of a card, gone soft as cloth from eleven years in a pocket.',
+    action:'Her own handwriting, faded: a number, a name, call anytime. “You gave me this after. Nobody else that day said call anytime and meant it.” His voice isn’t a threat yet — it’s closer to a confession no headset would have survived.', next:'bd_door_4d'},
+  bd_door_4d:{ img:'bd_door_profile.png', slug:'FLAT 74 · HIS TERMS',
+    line:'“I don’t want them,” he says, and for once the wood between them feels thin instead of locked.',
+    action:'A phone taps the door from inside — the livestream, almost an apology now. “Say what’s sealed. What they did. What you let them do. Or at nine o’clock this flat finishes what your card promised it wouldn’t.”', next:'bd_door_5d'},
+  bd_door_5d:{ img:'bd_door_listen.png', slug:'FLAT 74 · THE READ',
+    line:'She listens the way other people aim. The lighter is in his left hand, low — she can hear it in how his sentences lean.',
+    action:'He hasn’t decided. He kept a card for eleven years instead of a grudge — that isn’t what deciders do. What he wants is the adult who meant it once, meaning it again, on the record, where it can’t be taken back a second time.', next:'c_board_final_d'},
+
+  /* ============ FINAL CHOICE — truck variant ============ */
+  c_board_final_t:{ img:'bd_door_final.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
+    line:'Three minutes. One door, two children breathing behind it — the one who is seven, and the one who has been twelve for eleven years and just told her so.',
+    action:'In her coat, his phone is exactly as dark as it’s been for six months. She has spent that whole time not solving one silence, and just failed to remember the boy who solved her instead.',
+    timer:20, timeoutTo:'board_end_script_t',
     choices:[
-      {ct:'Say Her Name', cx:'Break the seal on his live channel — the name, the promise, her part in it. Whatever it costs after.', to:'board_end_name', maya:'truth'},
-      {ct:'Run the Script', cx:'Hold the gag. Nineteen years says she can land him without bleeding for it.', to:'board_end_script', maya:'control'},
-      {ct:'Open the Door', cx:'Trade up. Amara and her boy walk out; Maya sits where the witness should have been.', to:'board_end_room', maya:'connection'},
+      {ct:'Say Her Name', cx:'Break the seal on his live channel — the name, the promise, her part in it. He’ll finally hear an adult keep one.', to:'board_end_name_t', maya:'truth'},
+      {ct:'Run the Script', cx:'Hold the gag. Nineteen years of technique says she can land a boy she can’t even place.', to:'board_end_script_t', maya:'control'},
+      {ct:'Open the Door', cx:'Trade up. Amara and her boy walk out; Maya sits with the twelve-year-old she should have remembered.', to:'board_end_room_t', maya:'connection'},
     ]},
 
-  board_end_name:{ end:true, type:'expose', label:'Ending — Say Her Name', img:'bd_end_name.png',
+  /* ============ FINAL CHOICE — door variant ============ */
+  c_board_final_d:{ img:'bd_door_final.png', slug:'FLAT 74 · 8:57 AM', chapter:'The last choice',
+    line:'Three minutes. One door, two children breathing behind it — the one who is seven, and the one still holding a card she doesn’t remember writing.',
+    action:'In her coat, his phone is exactly as dark as it’s been for six months. She has spent that whole time not solving one silence, and just found out someone kept faith with hers for eleven years.',
+    timer:20, timeoutTo:'board_end_script_d',
+    choices:[
+      {ct:'Say Her Name', cx:'Break the seal on his live channel — the name, the promise, her part in it. The card said call anytime. This is anytime.', to:'board_end_name_d', maya:'truth'},
+      {ct:'Run the Script', cx:'Hold the gag. Technique over the promise a card made for her eleven years ago.', to:'board_end_script_d', maya:'control'},
+      {ct:'Open the Door', cx:'Trade up. Amara and her boy walk out; Maya sits with the boy who kept her word better than she did.', to:'board_end_room_d', maya:'connection'},
+    ]},
+
+  /* ============ ENDINGS — Say Her Name (expose / truth) ============ */
+  board_end_name_t:{ end:true, type:'expose', label:'Ending — Say Her Name', img:'bd_end_name.png',
     title:'Say Her Name', maya:'truth',
-    text:'“Her name was Mairead Doyle. She was holding a phone, not a weapon. I promised no one would come through the door, and they came through the door, and I signed the paper that kept my objection quiet. That’s the file. That’s all of it.” Said once, plainly, onto a live stream with her career inside it. The lock turns. Amara and her son come out low and running; Callum comes out last, hands open, and the lighter he surrenders is still warm from his grip. The gag is void, the inquest reopened with her name at the top — she did that math at the door and said it anyway. Nineteen years of believing names make it personal, and personal is how you lose. Wrong. Personal is the only way anyone comes home. On the flight back she writes them down: Mairead. Callum. Amara. Sami, who is seven. His signature sent her toward this case, years ago. Tonight his phone told her to run from it. She still doesn’t know which version of him she disobeyed. She’d board again.'},
+    text:'“Her name was Mairead Doyle. She was holding a phone, not a weapon. I promised no one would come through the door, and they came through the door, and I signed the paper that kept my objection quiet. That’s the file. That’s all of it.” Said once, plainly, onto a live stream with her career inside it. The lock turns. Amara and her son come out low and running; Callum comes out last, hands open, lighter still warm from his grip. She has no memory to offer him — his face at twelve stayed his, not hers — so she gives him the only equal thing she owns: her own exposure, in public, at her own cost. “I still don’t have you,” she tells him at the threshold. “I have this instead.” “It’s more than I asked for,” he says, and lets the officers take his arm. The gag is void, the inquest reopened with her name at the top. Nineteen years of believing names make it personal, and personal is how you lose. Wrong — personal is a trade, made even when one side has nothing left to give but the truth. She’d board again.'},
 
-  board_end_script:{ end:true, type:'reckon', label:'Ending — Textbook', img:'bd_end_window.png',
+  board_end_name_d:{ end:true, type:'expose', label:'Ending — Say Her Name', img:'bd_end_name.png',
+    title:'Say Her Name', maya:'truth',
+    text:'“Her name was Mairead Doyle. She was holding a phone, not a weapon. I promised no one would come through the door, and they came through the door, and I signed the paper that kept my objection quiet. That’s the file. That’s all of it.” Said once, plainly, onto a live stream with her career inside it. The lock turns. Amara and her son come out low and running; Callum comes out last, the card still in his fist, lighter surrendered before the sentence finishes. She isn’t giving him anything new — she’s finally making good on a promise that’s been sitting in his pocket for eleven years, made by a version of her he trusted before she’d earned it. “Call anytime,” she says. “I meant it. I just didn’t know I had.” “Doesn’t matter when you knew,” he says. “Only that you came.” The gag is void, the inquest reopened with her name at the top — a debt paid eleven years late is still paid. Nineteen years of believing names make it personal, and personal is how you lose. Wrong — personal is a card kept in a pocket long after the person who wrote it forgot she had. She’d board again.'},
+
+  /* ============ ENDINGS — Textbook (reckon / control) ============ */
+  board_end_script_t:{ end:true, type:'reckon', label:'Ending — Textbook', img:'bd_end_window.png',
     title:'Textbook', maya:'control',
-    text:'She runs it clean — the hooks, the minimal encouragers, the surrender frame, nineteen years compressed into eleven flawless minutes. It works the way technique works: at 8:59 the door opens and Amara and her son come out low and running, because he never wanted them, and her script gave him a way to say so. What it doesn’t give him is a reason to follow. He goes to the window instead, lighter raised into the new sun, and a marksman two rooftops away does what marksmen are for. The report will say the object in his hand could not be identified in time. Eleven years ago a different report said the same sentence about a phone. Everyone she was flown here to save is alive. The boy who only ever asked for a witness is not. Daniel didn’t request the best negotiator in the file. He requested her — and only now does she understand he may have known the difference. She kept the rule — never make it personal — and finally understands what the rule was for: making sure she was never in the room.'},
+    text:'She runs it clean — the hooks, the minimal encouragers, the surrender frame, nineteen years compressed into the two minutes the clock still owes her. It’s the same shape he told her he memorised at twelve, and that is exactly the problem: technique only works on someone who hasn’t already taken it apart. At 8:59 the door opens and Amara and her son come out low and running, because he never wanted them, and her script gave him a way to say so. What it doesn’t give him is a reason to follow — a boy who has spent eleven years studying her can’t be talked down by the very method he studied. He goes to the window instead, lighter raised into the new sun. A marksman two rooftops away does what marksmen are for. Everyone she was flown here to save is alive. The boy who memorised her is not. Daniel didn’t request the best negotiator in the file. He requested her — and only now does she understand that being known that well was never protection. It was the exposure. The note is eleven years old. Whatever made Daniel write it, it wasn’t fear yet — not on that date. She keeps that fact filed next to all the others she can’t make add up.'},
 
-  board_end_room:{ end:true, type:'reposition', label:'Ending — The Room', img:'bd_end_room.png',
+  board_end_script_d:{ end:true, type:'reckon', label:'Ending — Textbook', img:'bd_end_window.png',
+    title:'Textbook', maya:'control',
+    text:'She runs it clean — the hooks, the minimal encouragers, the surrender frame, nineteen years compressed into the two minutes the clock still owes her, delivered to a boy who handed her a card instead of a script. Every line lands exactly where it’s trained to land, and none of them land where he needed one to. At 8:59 the door opens and Amara and her son come out low and running, because he never wanted them, and her method gave him a way to say so. What it doesn’t give him is a reason to follow — a card in a pocket was never a line item in the frame, and no amount of flawless technique substitutes for the one sentence he actually came here to hear. He goes to the window instead, lighter raised into the new sun. A marksman two rooftops away does what marksmen are for. Everyone she was flown here to save is alive. The boy who kept faith with a stranger’s handwriting for eleven years is not. Daniel didn’t request the best negotiator in the file. He requested her — and only now does she understand that a promise she doesn’t remember making was worth more to Callum than every flawless minute she flew in with. The note is eleven years old. Whatever made Daniel write it, it wasn’t fear yet — not on that date. She keeps that fact filed next to all the others she can’t make add up.'},
+
+  /* ============ ENDINGS — The Room (reposition / connection) ============ */
+  board_end_room_t:{ end:true, type:'reposition', label:'Ending — The Room', img:'bd_end_room.png',
     title:'The Room', maya:'connection',
-    text:'“Send them out, Callum. Keep me. You wanted someone with something to lose — I’m carrying more of that than anyone on this street.” The cardinal sin of her profession, offered in the flat voice she trusts most. The door opens six inches; Amara and her boy pour through it, and Maya steps into the room her promise died in. Petrol, dawn light, a wall she doesn’t look at. She sits on the floor and does the hardest technique she knows — nothing. No script, no frame, just a witness who stays. He talks for fifty minutes: the sofa, the silhouette, the sound command boots make on a landing. At 9:51 he caps the lighter and hands it over like something he’s been carrying for someone else. They walk out together into the blue lights. Her career ends in that doorway, and so does the rule about never making it personal. She landed believing distance was the skill. The skill was crossing the door. In her coat, his phone stays exactly where it’s been for six months. She doesn’t take it out. Not because she’s healed. Because for the first time, she’s willing to let someone else speak first.'},
+    text:'“Send them out, Callum. Keep me. You wanted someone with something to lose — I’m carrying more of that than anyone on this street.” The cardinal sin of her profession, offered in the flat voice she trusts most. The door opens six inches; Amara and her boy pour through it, and Maya steps into the room her promise died in eleven years ago, back when he was twelve and she was already gone by the time it mattered. She sits on the floor and does the hardest technique she knows — nothing. He talks for fifty minutes: the sofa, the silhouette, the sound command boots make on a landing, the exact words she used that he built a decade out of. She still can’t place his face at twelve — that memory is his alone now, not hers to recover. She stays anyway. Not because she remembers him. Because he needed a witness more than he needed to be remembered, and for once she can tell the difference. At 9:51 he caps the lighter and hands it over like something he’s been carrying for someone else. Her career ends in that doorway, and so does the rule about never making it personal. In her coat, Daniel’s phone stays dark. She doesn’t take it out. For the first time, she’s willing to let someone else speak first — and this time, she actually heard him.'},
+
+  board_end_room_d:{ end:true, type:'reposition', label:'Ending — The Room', img:'bd_end_room.png',
+    title:'The Room', maya:'connection',
+    text:'“Send them out, Callum. Keep me. You wanted someone with something to lose — I’m carrying more of that than anyone on this street.” The cardinal sin of her profession, offered in the flat voice she trusts most. The door opens six inches; Amara and her boy pour through it, and Maya steps into a room where a debt has been waiting eleven years for her to walk in and settle it. She sits on the floor and does the hardest technique she knows — nothing. He talks for fifty minutes, the card on the floor between them like a third person in the room, and she isn’t just listening — she’s paying, sentence by sentence, for a promise she didn’t know she’d made. Somewhere in the forty-first minute she finally says the thing the card promised and the file never let her: I’m sorry it took this long to call you back. At 9:51 he caps the lighter and hands it over, and the card too, like he’s done carrying both — the debt closed, not forgiven, closed. Her career ends in that doorway, and so does the rule about never making it personal. In her coat, Daniel’s phone stays exactly where it’s been for six months. She doesn’t take it out. Not because she’s healed. Because she just spent fifty minutes proving a promise can outlive the person who forgot making it — and for once, that’s the kind of afterlife she can actually deliver.'},
 
   /* ================= BRANCH B — STAY (Doubt) — the interception: Nadia's exit was timed
      for Maya to be over the Atlantic. She stayed. 100 minutes exist that never should have. ================= */
@@ -446,7 +533,7 @@ const STORY = {
     action:'She reads the building like a statement: this hour, international pier, seated far from people and near the boards. Four minutes of concourse at cordon-pace, and there — a shuttered wine bar, one silhouette in the dark of it, two suitcases packed for a life, not a trip.', next:'st_hunt_2'},
   st_hunt_2:{ img:'st_winebar.png', slug:'THE WINE BAR · SIXTY SECONDS OF BASELINE',
     line:'Rule one, before a single word: own the baseline.',
-    action:'Sixty seconds in shadow. Nadia isn’t crying and isn’t rehearsing. She’s watching the departures board — not her own flight. The London line. The one Maya isn’t on. Then, without turning: “You walk like him when you’re deciding something. Sit down, Maya.”', next:'st_meet_1'},
+    action:'Sixty seconds in shadow. Nadia isn’t crying and isn’t rehearsing. She’s watching the departures board — not her own flight. The London line. The one Maya isn’t on. Then, without turning: “You walk like him when you’re deciding something. Sit down, Maya.”', next:'st_meet_1_hunt'},
 
   /* — name-it path: the advantage, spent on purpose — */
   st_name_1:{ img:'st_phone_close.png', slug:'INT. GATE B22 · THE ADVANTAGE, SPENT',
@@ -454,26 +541,46 @@ const STORY = {
     action:'“Concourse B. The wine bar that’s closed.” A pause with weight in it. “I could have lied just now,” Nadia says. “So could I,” says Maya. In both their trades, that is how you say thank you.', next:'st_name_2'},
   st_name_2:{ img:'st_winebar_approach.png', slug:'THE WINE BAR · 12:14 AM',
     line:'Two suitcases packed for a life, not a trip. A boarding pass creased like a decision made months ago.',
-    action:'Nadia stands to meet her — no embrace, no distance, the exact professional middle. Up close, the last six months have happened to her too. “You came straight here,” she says. “No angles. He always said you’d be the last honest one in any room.”', next:'st_meet_1'},
+    action:'Nadia stands to meet her — no embrace, no distance, the exact professional middle. Up close, the last six months have happened to her too. “You came straight here,” she says. “No angles. He always said you’d be the last honest one in any room.”', next:'st_meet_1_name'},
 
-  /* — convergence: the two-hander — */
-  st_meet_1:{ img:'st_nadia_face.png', slug:'THE WINE BAR · HER TERMS',
-    line:'“The 1:55 to São Paulo, one way. When they call my row I stand up, and you let me. Until then — ask me anything.”',
-    action:'A deadline. Nineteen years on hostage lines and the deadline was always the other side’s move — she knows exactly what deadlines are for: making people trade like they’re drowning. A hundred minutes on the board. She sits down slowly, like the room is wired, and does not trade like she’s drowning.', next:'st_meet_2'},
-  st_meet_2:{ img:'st_nadia_read.png', slug:'THE WINE BAR · THE READ',
-    line:'“Why São Paulo?” — “Because Daniel hates a city he can’t walk.” Present tense. Uncorrected. Grief’s oldest tell — or the oldest trick in the book.',
-    action:'She opens a silence, the working kind, the one strangers fall into. Nadia watches it stretch and smiles like a bruise: “You went quiet so I’d fill it. He told me you do that.” Six months she has been the widow. She hadn’t priced in being the wife somebody else was taught.', next:'st_meet_3'},
-  st_meet_3:{ img:'st_nadia_rise.png', slug:'THE WINE BAR · WHAT SHE VOLUNTEERS',
-    line:'“He was frightened the last year, and not of me — you’ll have to decide that part yourself. I’m leaving because I’d rather be paranoid in another hemisphere than right in this one.”',
-    action:'Every sentence lands on the same knife-edge: exactly what a terrified friend would say, exactly what a careful liar would choose. Her hands are still. Too still. Overhead: “Flight 803 to São Paulo, now boarding Group One.” Nadia rises. “Two minutes. Don’t follow me to the ladies’ — it’s beneath us both.”', next:'st_teo_1'},
+  /* ===== FORK A — HUNT PATH: Nadia reads Maya as an operator, and manages her accordingly.
+     The wine bar plays as two professionals doing careful, measured disclosure. ===== */
+  st_meet_1_hunt:{ img:'st_nadia_face.png', slug:'THE WINE BAR · HER TERMS',
+    line:'“The 1:55 to São Paulo, one way. When they call my row I stand up, and you let me. Until then — ask me anything, negotiator.”',
+    action:'She sets the deadline like someone who’s had one used on her before — a courtesy between operators, not a trap. Maya sits the way she’d sit across a barricaded door: still, patient, cataloguing exits Nadia isn’t using.', next:'st_meet_2_hunt'},
+  st_meet_2_hunt:{ img:'st_nadia_read.png', slug:'THE WINE BAR · THE READ',
+    line:'“Why São Paulo?” — “Because Daniel hates a city he can’t walk.” Present tense. Uncorrected.',
+    action:'She opens the working silence, the one strangers fall into. Nadia doesn’t fall — she names it: “That’s the part where I talk to fill it. I know the move. I’ve watched it run on people who weren’t ready to be handled.” Not who. Maya files the gap where a name should sit.', next:'st_meet_3_hunt'},
+  st_meet_3_hunt:{ img:'st_nadia_rise.png', slug:'THE WINE BAR · WHAT SHE VOLUNTEERS',
+    line:'“You found me in four minutes flat. I’ll save us both the next twenty.” A controlled release, not a confession — the exact amount she’s decided to spend.',
+    action:'“He was frightened the last year, and not of me — you’ll decide that part yourself. I’m leaving because I’d rather be paranoid in another hemisphere than right in this one.” Every sentence measured before it leaves her, the way Maya measures her own. Overhead: “Flight 803 to São Paulo, now boarding Group One.” Nadia rises, unhurried, on schedule with herself. “Two minutes. Don’t follow me to the ladies’ — it’s beneath us both.”', next:'st_teo_1'},
 
-  /* — Teo, live-fire: the blade arrives mid-negotiation — */
+  /* ===== FORK B — NAME IT PATH: Nadia reads Maya as honest, and opens faster than she means to.
+     The wine bar plays as one woman losing composure a beat ahead of her own plan. ===== */
+  st_meet_1_name:{ img:'st_nadia_face.png', slug:'THE WINE BAR · HER TERMS',
+    line:'“The 1:55 to São Paulo, one way. When they call my row I stand up, and you let me. Until then — ask me anything, and I’ll only lie badly.”',
+    action:'No test in the deadline, the way there was no test in the door being open for her. Just a woman who’s been rehearsing this hundred minutes since March, and is glad, finally, to stop rehearsing alone.', next:'st_meet_2_name'},
+  st_meet_2_name:{ img:'st_nadia_read.png', slug:'THE WINE BAR · THE READ',
+    line:'“Why São Paulo?” — “Because Daniel hates a city he can’t walk.” Present tense. Uncorrected.',
+    action:'She opens the working silence, the one strangers fall into. Nadia falls into it like she’s never once had to guard against it: “You went quiet so I’d fill it. He told me you do that.” Six months she has been the widow. She hadn’t priced in being the wife somebody else was taught.', next:'st_meet_3_name'},
+  st_meet_3_name:{ img:'st_nadia_rise.png', slug:'THE WINE BAR · WHAT SHE VOLUNTEERS',
+    line:'“He was frightened the last year, and not of me — you’ll decide that part yourself. I’m leaving because I’d rather be paranoid in another hemisphere than right in this one.”',
+    action:'It comes out too fast, and Nadia hears it too, half a second behind Maya. “I wasn’t going to say that first. I don’t know why I did.” Grief with no guardrail on it — or a woman who’s learned that spilling reads as innocent. Overhead: “Flight 803 to São Paulo, now boarding Group One.” Nadia rises. “Two minutes. Don’t follow me to the ladies’ — it’s beneath us both.”', next:'st_teo_1'},
+
+  /* — Teo, live-fire: the blade arrives mid-negotiation — reconvergence point, both forks land here
+     with different accumulated reads (operator-Nadia vs. overflowing-Nadia) even though the reveal itself
+     is fixed. Locked story canon; text below adjusted only at the margins. — */
   st_teo_1:{ img:'teo_incoming.png', slug:'INT. CONCOURSE B · 1:12 AM · TEO CALLING',
     line:'Her phone, the moment Nadia is out of sight: TEO VARGAS. Five words sent at midnight, and he has spent the whole hour finding his nerve.',
     action:'“Not over the phone,” he starts — and then does it over the phone, because six months is heavier than procedure. “He came to me, Maya. Three weeks before. Route 9W, the overpass — he named the spot. It’s in no report, because I never wrote one.”', next:'st_teo_2'},
   st_teo_2:{ img:'teo_silhouette.png', slug:'PHONE · THE TAPE LINE',
     line:'“There’s worse. Someone stood at the tape line before any of us called it in. Back to the wreck, not looking. Maya — it was a woman.”',
-    action:'Forty meters out, Nadia is walking back, coat over one arm, face already arranged. Maya does the arithmetic she hates herself for: height, build, the particular stillness of someone who cannot look at the thing they came to see.', next:'c3_stay'},
+    action:'Forty meters out, Nadia is walking back, coat over one arm, face already arranged — controlled or composed again, Maya can’t tell which, and by now knows that not-knowing is the whole read. Height, build, the particular stillness of someone who cannot look at the thing they came to see.', next:'c3_stay'},
+
+  /* — post-Counted contaminated twin: same reveal, recolored by what she's since heard on the line — */
+  st_teo_2_contaminated:{ img:'teo_silhouette.png', slug:'PHONE · THE TAPE LINE',
+    line:'“There’s worse. Someone stood at the tape line before any of us called it in. Back to the wreck, not looking. Maya — it was a woman.”',
+    action:'Forty meters out, Nadia is walking back, coat over one arm, face already arranged — controlled or composed again, Maya can’t tell which, and by now knows that not-knowing is the whole read. Height, build, the particular stillness of someone who cannot look at the thing they came to see. A woman, Teo said. He never said only. She has since learned exactly how well a person can stand somewhere, unseen, and still be the one watching — and now she can’t stop wondering who else that night stood close enough to see and far enough not to be seen.', next:'c3_stay'},
 
   c3_stay:{ img:'st_winebar_tense.png', slug:'THE WINE BAR · 1:15 AM', chapter:'Choice — the blade',
     line:'A woman at the tape line, hours before the world knew — in her pocket now, and Nadia doesn’t know she’s carrying it. Twenty-five minutes to the gate.',
@@ -484,29 +591,30 @@ const STORY = {
       {ct:'Play It', cx:'Lay the woman at the tape line on the table, and read the half-second after.', to:'st_play_1', maya:'truth'},
     ]},
 
-  /* — play it: the accusation — */
+  /* — play it: the accusation extracts a fact with edges — something she can go check — */
   st_play_1:{ img:'st_nadia_tense.png', slug:'THE WINE BAR · THE ACCUSATION',
-    line:'“The night he died, someone stood at the tape line before it was called in. A woman. Back to the wreck.” Flat, no verb pointed at anyone. Then she reads the half-second.',
-    action:'The half-second holds no flinch where liars flinch, no outrage where the innocent keep theirs. It holds something worse: relief. “So somebody finally says it out loud,” Nadia breathes. “It was me.”', next:'st_play_2'},
-  st_play_2:{ img:'st_nadia_open.png', slug:'THE WINE BAR · THE TRUE ONE',
-    line:'“Eleven days I’d been following him, because he was frightened and wouldn’t say why. You want my reason — I only have the true one: I was afraid for him. Notice it’s also exactly what I’d say if I were what you’re afraid I am.”',
-    action:'Nineteen years of reads, and this one returns clean and unreadable — not a wall; a window with two views. She spends her last card anyway: “London. Did you ask for me by name?” — “No.” It lands the same way. True-shaped. Both directions.', next:'st_final_1'},
+    line:'“The night he died, someone stood at the tape line before it was called in. A woman. Back to the wreck.” Flat, no verb pointed at anyone.',
+    action:'The half-second after holds no flinch where liars flinch, no outrage where the innocent keep theirs. It holds something worse: relief. “So somebody finally says it out loud,” Nadia breathes. “It was me.”', next:'st_play_2'},
+  st_play_2:{ img:'st_nadia_open.png', slug:'THE WINE BAR · THE PROVABLE PART',
+    line:'“Eleven days. I followed him because he was frightened and wouldn’t say why. I was afraid for him — I know exactly how that sounds, coming from me.”',
+    action:'Pressure makes people over-prove, and she hands over the negotiator’s own trick, aimed back at herself: “The George Washington Bridge, upper level, that night. E-ZPass. It’ll say I was three minutes from that overpass — however it looks for me.” Then, since this table only runs in one register: “London. Did you ask for me by name?” — “No.” Clean. Checkable, like everything else she’s just been handed.', next:'st_final_1'},
 
-  /* — hold it: the other craft — */
+  /* — hold it: the sheathed blade draws out a fact with no edges at all — something she can never check — */
   st_hold_1:{ img:'st_nadia_laugh.png', slug:'THE WINE BAR · THE SHEATHED BLADE',
-    line:'She folds the tape line away unplayed and asks about the weather in São Paulo. Interrogation is pressure. This is the other craft: gravity.',
+    line:'She folds the tape line away unplayed and asks about the weather in São Paulo. Interrogation is pressure; this is the other craft — gravity.',
     action:'She offers small true things — his unforgivable parking, how he read a menu twice and ordered the first thing anyway. Nadia laughs once, real, then stops like the laugh cost money. “Before they call my row — better you hear it from me than from whoever’s been calling you all night.”', next:'st_hold_2'},
-  st_hold_2:{ img:'st_nadia_stillhands.png', slug:'THE WINE BAR · GIVEN, NOT TAKEN',
-    line:'“I was on Route 9W that night. At the tape, before the sirens. Eleven days I’d been following him, because he was frightened and wouldn’t say why. That’s the whole confession, and I know exactly how it sounds.”',
-    action:'Given, not taken — worth everything, provable never. The read returns the way the deep ones do when it matters most: true-shaped in both directions. “London,” Maya says. “Did you ask for me by name?” — “No.” Same shape. Both views.', next:'st_final_1'},
+  st_hold_2:{ img:'st_nadia_stillhands.png', slug:'THE WINE BAR · THE PART SHE CAN’T PROVE',
+    line:'“I was on Route 9W that night. At the tape, before the sirens. Eleven days I’d been following him, because he was frightened and wouldn’t say why.”',
+    action:'Given, not taken — and then she hands over the part with no edges at all. “He made me promise, the week before, not to tell you he was scared, unless you asked. He didn’t want you carrying his fear on top of your own.” No toll record for a promise — only her word it was ever asked of her. Maya doesn’t put the London question on the table; some part of her already knows the answer would be one more true-shaped thing. Nadia gives it anyway, unprompted: “Ask Teo who signs personnel requests. I never learned how.”', next:'st_final_1'},
 
-  /* — convergence: final call — */
+  /* — convergence: final call. Plot converges here on purpose — the deadline, the gate — but what
+     each path is carrying into it (a checkable fact vs. an unprovable one) stays genuinely different. — */
   st_final_1:{ img:'st_lastcall.png', slug:'GATE B31 · 1:38 AM · FINAL CALL',
     line:'“Final call, Flight 803 to São Paulo.” Nadia stands and shoulders her bag like a verdict no one read out.',
-    action:'Twenty-five hundred hours of hostage tape taught her the instrument doesn’t lie. Tonight the instrument says both. Frightened women flee the country; guilty women flee the country; the same flight carries either one. On the board, amber: GATE CLOSING.', next:'c_stay_final'},
+    action:'Twenty-five hundred hours of hostage tape taught her the instrument doesn’t lie. Tonight the instrument says both. In her pocket now: one new fact, sharp-edged or soft — she won’t know which kind of true it is until she tries to use it. On the board, amber: GATE CLOSING.', next:'c_stay_final'},
 
   c_stay_final:{ img:'st_lastcall.png', slug:'GATE B31 · 1:39 AM', chapter:'The last choice',
-    line:'Nine steps of jet bridge between her and the only living person fluent in Daniel. The read still says both. It will always say both.',
+    line:'Nine steps of jet bridge between her and the only living person fluent in Daniel. Whatever she’s holding — a place she could go check, or a promise she never can — the read still says both.',
     action:'',
     timer:20, timeoutTo:'end_stay_verdict',
     choices:[
@@ -517,15 +625,15 @@ const STORY = {
 
   end_stay_verdict:{ end:true, type:'doubt', label:'Ending — The Open Verdict', img:'st_end_verdict.png',
     title:'The Open Verdict', maya:'doubt',
-    text:'“Safe flight.” Two words, none of the nineteen-year closers, and she means both of them. At the mouth of the jet bridge Nadia turns — a look that could be apology, gratitude, or the last frame of a getaway — and Maya lets it be all three at once, the hardest technique she has ever run. The door seals. Here is what she boarded a thousand crises believing: that doubt is the hostage, and certainty is how you bring it home. Wrong. Some questions are load-bearing. Pull them out and the roof comes down on everyone still inside — Teo, Nadia, the man she married, her. She walks back through the empty terminal past Gate B22, his phone dark in her coat, the one impossible thing in a world she is done demanding explain itself. Her thumb crosses the wedding ring and, for the first time in six months, doesn’t turn it. She isn’t counting anything. A negotiator who can hold a question without forcing the answer — that isn’t the job she had. It’s the one she is starting.'},
+    text:'“Safe flight.” Two words, none of the nineteen-year closers, and she means both of them. At the mouth of the jet bridge Nadia turns — a look that could be apology, gratitude, or the last frame of a getaway — and Maya lets it be all three at once, the hardest technique she has ever run. The door seals. She is carrying more tonight than she boarded with six months of nothing: a toll record she may never pull, or a promise she may never test; Teo’s report that was never filed; a woman at a tape line who was afraid, or careful, or both, and never stopped being both while Maya watched. A man who plans eleven years ahead doesn’t usually come apart in the last one. Or he does, and the plan was never the calm part. Here is what she believed a thousand crises: that doubt is the hostage, and certainty is how you bring it home. Wrong. Some questions are load-bearing. Pull them out and the roof comes down on everyone still standing in the room — Teo, Nadia, the man she married, her. She walks back past Gate B22, his phone dark in her coat, the one impossible thing in a world she is done demanding explain itself. Her thumb crosses the wedding ring and, for the first time in six months, doesn’t turn it. She isn’t counting anything. A negotiator who can hold a question without forcing the answer — that isn’t the job she had. It’s the one she is starting.'},
 
   end_stay_bridge:{ end:true, type:'reposition', label:'Ending — The Golden Bridge', img:'st_end_bridge.png',
     title:'The Golden Bridge', maya:'connection',
-    text:'“Miss the flight.” Nadia’s hand stops on the strap. “That’s the whole ask. No statements, no police, no answer tonight. Stay where I can find you, and I stay where you can find me.” The oldest move in her book — never corner them; build a bridge worth more than the exit — and she has never once run it on someone she needed. Four seconds. The gate agent watches the last passenger in the airport decide. Then the 1:55 to São Paulo pushes back with an empty seat, and two women sit at a shuttered wine bar until the terminal turns blue with morning. Nadia answers everything, and every answer comes back true-shaped both ways; the verdict never arrives, and Maya stops billing it for the delay. She still doesn’t know if she spent the night with the woman who watched Daniel die or the woman who tried to stop it. She knows she is no longer the only person fluent in him. The negotiation worked; the grief didn’t move an inch. Those were never the same hostage — nineteen years, and tonight she finally files them separately.'},
+    text:'“Miss the flight.” Nadia’s hand stops on the strap. “That’s the whole ask — no statements, no police, no answer tonight. Stay where I can find you, and I stay where you can find me.” The oldest move in her book — never corner them, build a bridge worth more than the exit — and she has never once run it on someone she needed until tonight. Four seconds. The gate agent watches the last passenger in the airport decide. Then the 1:55 to São Paulo pushes back with an empty seat, and two women sit at a shuttered wine bar until the terminal turns blue with morning. Nadia keeps talking long past the point where she has to; the toll record stands unpulled, the promise stands untested, and neither one moves an inch closer to proof. Maya still doesn’t know if she spent the night with the woman who watched Daniel die or the woman who tried to stop it — with the operator who measures what she gives, or the griever who can’t stop giving it. She knows only that she is no longer the only person fluent in him. The negotiation worked; the grief didn’t move an inch. Those were never the same hostage — nineteen years, and tonight she finally files them separately.'},
 
   end_stay_record:{ end:true, type:'expose', label:'Ending — On the Record', img:'end_expose.png',
     title:'On the Record', maya:'truth',
-    text:'She lets the plane go — you don’t detain a maybe; that is the whole discipline in one sentence. Then, alone in an airport built for six hundred, she texts Teo: “I’m going to say all of it. Including you.” The reply takes one minute. “Say it.” She calls the reporter who wrote up the crash as weather and traffic, and gives it plainly, in the flat voice she saves for hostage lines: the overpass named three weeks early, the report that was never filed, six months of silence with her own at the top of the list. The woman at the tape line she describes and does not name — she will not hand the world a verdict she doesn’t own. Her name goes on the record; her clearance won’t survive the byline, and she did that arithmetic before her thumb moved. Nineteen years spent managing other people’s worst nights inside sealed rooms, trading truth for outcomes. Tonight she stops negotiating and testifies — no outcome purchased, no certainty attached. Just a witness, at last. She sits under the white terminal light, hands empty, phone quiet.'},
+    text:'She lets the plane go — you don’t detain a maybe; that’s the whole discipline in one sentence. Alone in an airport built for six hundred, she texts Teo: “I’m going to say all of it. Including you.” His reply takes one minute: “Say it.” She calls the reporter who wrote the crash up as weather and traffic, and gives it plainly, in the flat voice she saves for hostage lines: the overpass named three weeks early, the report that was never filed, six months of silence with her own name at the top of the list. The woman at the tape line she describes and does not name — a toll record unpulled, a promise unproven — because she will not hand the world a verdict she doesn’t own herself. Her name goes on the record; her clearance won’t survive the byline, and she did that arithmetic before her thumb moved. Nineteen years spent managing other people’s worst nights inside sealed rooms, trading truth for outcomes. Tonight she stops negotiating and testifies — no outcome purchased, no certainty attached. Just a witness, at last, under the white terminal light, hands empty, phone quiet.'},
 
   /* ================= BRANCH C — CALL BACK (Connection) — the living line.
      His number, recycled to a prepaid in Queens. A locked phone that can only answer.
@@ -544,7 +652,12 @@ const STORY = {
     action:'Seven years old. They moved after summer — he doesn’t know the new address. Mom breathes “like through a straw.” Battery: one red line. And the reason no help ever came: a prepaid, minutes run out weeks ago — it can still ring, it just can’t call anyone. A seven-year-old, alone, with a phone that will not dial out. “It only let me answer,” he says. Hers was the first call all night.', next:'call_5'},
   call_5:{ img:'cb_triage.png', slug:'INT. GATE B22 · TWO TAPS',
     line:'She merges 911 into the line with two taps she has done from command vans — softly, so the click doesn’t scare him.',
-    action:'The dispatcher runs the ping: prepaid, no account address. What comes back is a circle drawn over Queens, twelve blocks wide. A circle is not a door. Everything that shrinks it from here comes out of a seven-year-old’s mouth — and overhead, the PA starts saying her name. Final boarding. London. Passenger Reyes.', next:'c2_call'},
+    action:'The dispatcher runs the ping: prepaid, no account address — and one line that stops her cold for half a second, a monitoring request already open on this exact number, filed four days after the funeral, requester field blank to her clearance. Before it was anyone’s prepaid, it was already somebody’s to watch. She has no room to ask. What comes back besides is a circle over Queens, twelve blocks wide, and overhead the PA starts saying her name — final boarding, London, passenger Reyes.', next:'c2_call'},
+
+  /* — post-Counted contaminated twin: same reveal, recolored by what she's since heard on the line — */
+  call_5_contaminated:{ img:'cb_triage.png', slug:'INT. GATE B22 · TWO TAPS',
+    line:'She merges 911 into the line with two taps she has done from command vans — softly, so the click doesn’t scare him.',
+    action:'The dispatcher runs the ping: prepaid, no account address — and one line that stops her cold for half a second, a monitoring request already open on this exact number, filed four days after the funeral, requester field blank to her clearance. Before it was anyone’s prepaid, it was already somebody’s to watch. She used to read that as someone else’s mystery. Now she knows exactly one man capable of watching a dead line and staying silent regardless of who called it — and the obvious answer isn’t the comforting one. What comes back besides is a circle over Queens, twelve blocks wide, and overhead the PA starts saying her name — final boarding, London, passenger Reyes.', next:'c2_call'},
 
   c2_call:{ img:'cb_gate_finalcall.png', slug:'INT. GATE B22 · FINAL CALL', chapter:'Choice — what is she to a stranger?',
     line:'The airport says her name again, to make her leave. The boy on the line doesn’t even know it yet.',
@@ -574,27 +687,37 @@ const STORY = {
     action:'He stops answering. Not crying — gone. She can hear the tablecloth he’s hiding under. The script has pages for jumpers, barricades, a man with a deadline and a grievance. It has nothing for a child going quiet. Procedure got her here, and procedure is out of pages.', next:'cb_script_3'},
   cb_script_3:{ img:'maya_eyes.png', slug:'INT. GATE B22 · OFF SCRIPT',
     line:'“Maya. My name’s Maya. I missed my plane on purpose, and I’m not going anywhere.” Nineteen years of rules, set down where a child can hear the sound they make.',
-    action:'The tablecloth shifts. A sniff, close to the phone. Then, small and formal, like a trade being honored: “I’m Jonah.” She writes it on her boarding pass, straight across LONDON — the first name she has let herself learn in nineteen years.', next:'cb_search_1'},
+    action:'The tablecloth shifts. A sniff, close to the phone. Then, small and formal, like a trade being honored: “I’m Jonah.” She writes it on her boarding pass, straight across LONDON — the first name she has let herself learn in nineteen years. A trade honored late is still thin — he’ll make her prove it again before the night’s out.', next:'cb_search_1s'},
+
+  cb_search_1s:{ img:'cb_window_signs.png', slug:'THE WINDOW · CLOSED QUESTIONS',
+    line:'“Go to the window, Jonah. Tell me what’s lit.” She asks it the way the manual says to — one fact, then the next.',
+    action:'Closed questions get exactly what they’re asked for and nothing volunteered. The chicken sign, half burned out. The stairs, going around twice — pulled out on a second ask, the trust from the kitchen still too thin to hand over anything she hasn’t named first. The party store goes unmentioned; nobody asked. The circle over Queens loses a third of its blocks, not half. Behind her, a flight to London pushes back without her.', next:'cb_search_2s'},
+  cb_search_2s:{ img:'cb_window_plane.png', slug:'THE WINDOW · HELD OUT INTO THE NIGHT',
+    line:'“Now hold the phone out the window, Jo. Let me hear your street.”',
+    action:'Silence — he doesn’t move. Last time she asked him to be brave, a siren went by and took his voice with it. She has to pay the same coin twice — I’m still here, I’m not leaving — before the window opens. Traffic wash, a far-off dog, then a roar builds over his roof and another behind it, ninety seconds back. Kennedy’s approach pattern, the same noise she’s standing under. The circle collapses to a corridor — a beat later than it should have.', next:'cb_search_3s'},
+  cb_search_3s:{ img:'cb_sirens.png', slug:'THE STREET · HOT AND COLD',
+    line:'“Louder or quieter, Jonah. Louder or quieter.”',
+    action:'He calls it right — “outside, it’s OUTSIDE—” — and then the wall: locked lobby, dead buzzer, a fire escape on the wrong face of the building. What slips through isn’t comfort, it’s a rule, recited flat: “Mom said if this ever happens again, don’t open the door for anyone.” Again. He’s stood at this window before. Three flights of stairwell between help and the kitchen, and the battery has started blinking its last red line.', next:'c_call_final'},
 
   /* — name path: she pays first — */
   cb_name_1:{ img:'cb_gate_finalcall.png', slug:'INT. GATE B22 · THE TRADE',
     line:'She pays first, before the armor can file an objection: her name, and one true thing to go with it.',
-    action:'“Maya. I talk to people on the worst night of their lives. I’m very good at it, and I just gave my plane away to talk to you.” Four seconds while a seven-year-old audits that for lies. Then: “I’m Jonah. Mom calls me Jo when she’s not mad.” Present tense. Her whole job now is keeping it true.', next:'cb_search_1'},
+    action:'“Maya. I talk to people on the worst night of their lives. I’m very good at it, and I just gave my plane away to talk to you.” Four seconds while a seven-year-old audits that for lies. Then: “I’m Jonah. Mom calls me Jo when she’s not mad.” Present tense. Her whole job now is keeping it true. He hands over the rest of himself in the same breath, no second trade required — she’ll pay the difference later.', next:'cb_search_1n'},
 
-  /* — convergence: the search — a location, negotiated out of a child — */
-  cb_search_1:{ img:'cb_window_signs.png', slug:'THE WINDOW · WHAT A KID KNOWS',
-    line:'He doesn’t know his address. He knows his world. Her whole career is the difference between those two sentences.',
-    action:'Go to the window, Jonah — tell me what’s lit. “The chicken sign. Half the chicken is burned out.” What else. “The party store. And our stairs go around two times.” A broken sign, a third-floor walk-up, a party store below. On the dispatch end, the circle over Queens loses half its blocks. Behind her, small and far away, a flight to London pushes back without her.', next:'cb_search_2'},
-  cb_search_2:{ img:'cb_window_plane.png', slug:'THE WINDOW · HELD OUT INTO THE NIGHT',
-    line:'“Now hold the phone out the window, Jo. Let me hear your street.”',
-    action:'Traffic wash. A far-off dog. Then a roar builds over his roof — heavy, slow, landing-gear low — and another behind it, ninety seconds back. Approach pattern. Kennedy. The airport she is standing in is the noise on his ceiling; she has had one end of his street in her ear all night. The circle collapses to a corridor under the flightpath.', next:'cb_search_3'},
-  cb_search_3:{ img:'cb_sirens.png', slug:'THE STREET · HOT AND COLD',
-    line:'Two units crawl the corridor with sirens up, and she plays them against his ears. Louder or quieter, Jonah. Louder or quieter.',
-    action:'“Louder — louder — it’s OUTSIDE—” Then the wall she has been bracing for: locked lobby, dead buzzer, a fire escape on the wrong face of the building. Three floors of stairwell between help and the kitchen. His mother’s breaths arrive like they’re being carried from further and further away. The battery’s red line has started to blink.', next:'c_call_final'},
+  cb_search_1n:{ img:'cb_window_signs.png', slug:'THE WINDOW · WHAT A KID KNOWS',
+    line:'“Go to the window, Jo — tell me your whole world, not just what I ask.”',
+    action:'He doesn’t wait to be asked twice. The chicken sign, half burned out. The party store below — “the guy who gave me a lollipop that one time.” The stairs that go around twice. Everything at once, the way you talk to someone you’ve already decided to trust. The circle over Queens loses half its blocks in one breath. Behind her, small and far away, a flight to London pushes back without her.', next:'cb_search_2n'},
+  cb_search_2n:{ img:'cb_window_plane.png', slug:'THE WINDOW · HELD OUT INTO THE NIGHT',
+    line:'“Hold the phone out the window, Jo. Let me hear your street.”',
+    action:'“Okay.” No hesitation — he already handed her the hard thing once tonight; this is just the next one. Traffic wash, a far-off dog, then a roar over his roof and another behind it, ninety seconds back. Kennedy’s approach pattern — the airport under her own feet is the noise on his ceiling. Before she can ask the next question, he asks his: “Are you scared of anything?” She could dodge it. She doesn’t. “Yes,” she says. “Right now, a little.” The circle collapses to a corridor under the flightpath.', next:'cb_search_3n'},
+  cb_search_3n:{ img:'cb_sirens.png', slug:'THE STREET · HOT AND COLD',
+    line:'“Louder or quieter, Jonah. Louder or quieter.”',
+    action:'“Outside — it’s OUTSIDE—” Then the wall: locked lobby, dead buzzer, a fire escape on the wrong face of the building. What comes with it this time isn’t a rule, it’s a confession, small and guilty: “We were fighting about my homework. That’s why she was mad when she fell.” He needed someone to tell first. Three flights of stairwell between help and the kitchen, and the battery has started blinking its last red line.', next:'c_call_final'},
 
+  /* — convergence: same room, same stakes — the knowledge Maya carries in is what differs — */
   c_call_final:{ img:'cb_battery_red.png', slug:'THE KITCHEN · ONE RED LINE', chapter:'The last choice',
     line:'The top lock needs a chair and both of his hands. The phone doesn’t make that trip. To let them in, he has to put her down.',
-    action:'',
+    action:'Whatever it cost to get here — a name traded early, or a name earned the hard way after a siren nearly took his voice — he is hers to lose now, one way or the other.',
     timer:20, timeoutTo:'end_call_kept',
     choices:[
       {ct:'Send Him', cx:'Put me down, Jonah. Do it scared. The door matters more than my voice.', to:'end_call_sent', maya:'connection'},
@@ -603,11 +726,11 @@ const STORY = {
 
   end_call_sent:{ end:true, type:'reposition', label:'Ending — Forty-One Seconds', img:'cb_end_er.png',
     title:'Forty-One Seconds', maya:'connection',
-    text:'“Put the phone down next to her, Jo — so she can hear you being brave. Chair. Lock. Both hands. Go.” The hardest talk-down of her career is a seven-year-old and a telephone, and she wins it: footsteps, going away — the bravest sound nineteen years of lines has ever played her. A chair scrapes. A clunk, far off, that she will replay for the rest of her life. Then the battery takes the rest. The interval has no name in any manual; she stands it at an emptied gate, and then she doesn’t — cross streets inked over LONDON on her boarding pass, a cab, a dawn ER. Jonah knows her on one word. His mother is alive: they walked in through the door he opened. In the corridor she finally plays the forty-one seconds she has carried for six months. Wind, a parking lot, half a laugh — they’re out of the bread she likes. “See you at home.” No warning in it. No answer. Just him, ordinary — which is what she was afraid of, and the only thing she needed. Six months she kept his line like a tomb and called it faithfulness. A line is not for keeping. It’s for handing someone across. When Jonah’s mother wakes, the first thing Maya asks is her name.'},
+    text:'“Put the phone down next to her, Jo — so she can hear you being brave. Chair. Lock. Both hands. Go.” The hardest talk-down of her career is a seven-year-old and a telephone, and she wins it: footsteps, going away — the bravest sound nineteen years of lines has ever played her. A chair scrapes. A clunk, far off, that she will replay for the rest of her life. Then the battery takes the rest. The interval has no name in any manual; she stands it at an emptied gate, and then she doesn’t — cross streets inked over LONDON on her boarding pass, a cab, a dawn ER. Jonah knows her on one word. His mother is alive: they walked in through the door he opened. In the corridor she finally plays the forty-one seconds she has carried for six months. Wind, a parking lot, half a laugh — they’re out of the bread she likes. “See you at home.” No warning in it. No answer. Just him, ordinary — which is what she was afraid of, and the only thing she needed. Somewhere in a dispatch log, a flag with a blank requester field is still open on a dead man’s number; she still doesn’t know who else has been listening tonight, and for once she lets that wait. Six months she kept his line like a tomb and called it faithfulness. A line is not for keeping. It’s for handing someone across. When Jonah’s mother wakes, the first thing Maya asks is her name.'},
 
   end_call_kept:{ end:true, type:'doubt', label:'Ending — The Line She Kept', img:'cb_end_gate_dark.png',
     title:'The Line She Kept', maya:'doubt',
-    text:'She can’t send him. Not across a dark apartment, alone, away from the only voice holding him up — so she keeps him, and it is warm, and it is true, and it spends the minutes. Breathe with me, Jo. Hand on her hair. They’re coming. The battery dies mid-word — hers, not his — and takes the choice with it. EMS wakes the super, finds the master key, reaches the third floor eleven minutes later. Jonah is fine. His mother needed nine of those minutes back. At the gate, Maya sits very still with a dead man’s phone in her pocket and finally understands the last six months: she never kept that line open for him. She kept it because putting it down had to be done alone, in the dark, scared — and she wouldn’t go. Tonight she taught a seven-year-old to hold on exactly the way she does. In ninety days the carrier will rest the mother’s ten digits and sell them on to somebody living — the number’s third keeper this year. She hopes to God nobody ever calls it looking for a voice they miss.'},
+    text:'She can’t send him. Not across a dark apartment, alone, away from the only voice holding him up — so she keeps him, and it is warm, and it is true, and it spends the minutes. Breathe with me, Jo. Hand on her hair. They’re coming. The battery dies mid-word — hers, not his — and takes the choice with it. EMS wakes the super, finds the master key, reaches the third floor eleven minutes later. Jonah is fine. His mother needed nine of those minutes back. At the gate, Maya sits very still with a dead man’s phone in her pocket and finally understands the last six months: she never kept that line open for him. She kept it because putting it down had to be done alone, in the dark, scared — and she wouldn’t go. Tonight she taught a seven-year-old to hold on exactly the way she does. In ninety days the carrier will rest the mother’s ten digits and sell them on to somebody living — the number’s third keeper this year, and somewhere behind it a watch flag with no name attached is still open, waiting for a fourth. She hopes to God nobody ever calls it looking for a voice they miss.'},
 
   end_hidden:{ end:true, type:'hidden', label:'Hidden ending — The Truth', img:'hidden_daniel.png',
     title:'He Counted',  maya:'love',
@@ -616,12 +739,32 @@ const STORY = {
 
 /* the hidden path: the full-distrust run capped with exposure — Stay(doubt) → Hunt(doubt) → Hold It(doubt)
    → On the Record(truth). Exact-sequence check; unreachable from Board/Call Back (their pathCodes[0] is
-   control/connection), and timeouts can never stumble into it (c_stay_final's timeout resolves to doubt) */
+   control/connection), and timeouts can never stumble into it (c_stay_final's timeout resolves to doubt).
+   MEMORY GATE (Build 25, Producer directive 2026-07-09): the exact sequence alone is only ~2.8% odds on a
+   single blind playthrough — not good enough for a reveal that's supposed to need player memory, not luck.
+   Requires seen().length>0 — at least one other Maya/ending already completed on this device — so a
+   first-ever playthrough cannot reach it no matter how the choices land. */
 let pathCodes=[];
 let choiceWasTimeout=false;
 function resolveEnd(toKey){
-  if(toKey==='end_stay_record' && pathCodes.join('.')==='doubt.doubt.doubt.truth'){ return 'end_hidden'; }
+  if(toKey==='end_stay_record' && pathCodes.join('.')==='doubt.doubt.doubt.truth' && seen().length>0){ return 'end_hidden'; }
   return toKey;
+}
+
+/* REPLAY CONTAMINATION (Build 25): once the player has heard Daniel's voice at least once
+   on this device (seen().includes('love') — the hidden ending's maya tag), three beats — one
+   per branch — swap to a contaminated twin with identical staging but recolored by what she
+   now knows he's capable of. Same mechanism family as resolveEnd(): a lookup, not a rewrite of
+   next/to pointers elsewhere. Permanent once unlocked, same as the hidden-ending gate itself. */
+const CONTAMINATED_TWINS = {
+  board_reveal_alley: 'board_reveal_alley_contaminated',
+  board_reveal_brief: 'board_reveal_brief_contaminated',
+  st_teo_2: 'st_teo_2_contaminated',
+  call_5: 'call_5_contaminated',
+};
+function postCounted(key){
+  if(CONTAMINATED_TWINS[key] && seen().includes('love')) return CONTAMINATED_TWINS[key];
+  return key;
 }
 
 /* ============================================================
@@ -641,6 +784,7 @@ function setHUD(n){
 
 function go(key){
   stopTimer();
+  key=postCounted(key);
   node=STORY[key];
   if(!node){console.warn('missing node',key);return;}
   if(node.maya) remember(node.maya);
